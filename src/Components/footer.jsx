@@ -1,5 +1,4 @@
 import React from "react";
-import img from '../assets/footer.png';
 import logo from "../assets/logo.png";
 import {
   FaFacebookF,
@@ -8,73 +7,81 @@ import {
   FaLinkedinIn,
   FaTelegramPlane,
 } from "react-icons/fa";
-import { MdLocationOn, MdEmail, MdPhone } from "react-icons/md";
-import { motion as Motion } from 'framer-motion';
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-blue-50 via-white to-blue-100 text-center relative mt-5 pt-10 rounded-t-3xl shadow-2xl border-t-2 border-blue-100">
-      {/* Top Info */}
-      <Motion.div
-        className="max-w-screen-xl mx-auto py-8 px-4 lg:ml-160"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-      >
-        <img src={logo} alt="Logo" className="h-12 w-auto mx-auto drop-shadow-lg" />
-      </Motion.div>
-      <Motion.div
-        className="flex flex-col md:flex-row items-center justify-center text-blue-700 mt-4 gap-4 text-base font-medium"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, delay: 0.2 }}
-      >
-        <div className="flex items-center gap-2">
-          <MdLocationOn />
-          Dillibazar 30, Kathmandu, Nepal
+    <footer className="bg-gradient-to-br from-blue-50 via-white to-blue-100 text-sm text-gray-700 pt-10 pb-6 px-6 md:px-16 lg:px-32 mt-5">
+      <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-10">
+        {/* Logo + Intro */}
+        <div className="md:col-span-2 space-y-4">
+          <img src={logo} alt="Logo" className="h-6 w-auto" />
+          <p className="leading-relaxed">
+            Taking the pain out of accounting so you and your business can concentrate on slaying the world (or whatever your plans happen to be).
+          </p>
+          {/* <div className="flex space-x-2 mt-2">
+            <img src="/xero-logo.png" alt="Xero" className="h-6" />
+            <img src="/certified.png" alt="Certified" className="h-6" />
+          </div> */}
         </div>
-        <div className="flex items-center gap-2">
-          <MdEmail />
-          inquiry@everestdmc.com
+
+        {/* Navigation Columns */}
+        <div>
+          <h4 className="font-bold text-gray-800 mb-2">Services</h4>
+          <ul className="space-y-1">
+            <li><a href="#" className="hover:underline">Businesses & contractors</a></li>
+            <li><a href="#" className="hover:underline">Xero services</a></li>
+            <li><a href="#" className="hover:underline">Bookkeeping</a></li>
+            <li><a href="#" className="hover:underline">Starter pack</a></li>
+          </ul>
         </div>
-        <div className="flex items-center gap-2">
-          <MdPhone />
-          +977-014530577
+
+        {/* <div>
+          <h4 className="font-bold text-gray-800 mb-2">Resources</h4>
+          <ul className="space-y-1">
+            <li><a href="#" className="hover:underline">Key dates</a></li>
+            <li><a href="#" className="hover:underline">GST calculator</a></li>
+            <li><a href="#" className="hover:underline">Business guides</a></li>
+            <li><a href="#" className="hover:underline">Checklists & ebooks</a></li>
+            <li><a href="#" className="hover:underline">Client stories</a></li>
+            <li><a href="#" className="hover:underline">News & updates</a></li>
+          </ul>
+        </div> */}
+
+        <div>
+          <h4 className="font-bold text-gray-800 mb-2">Company</h4>
+          <ul className="space-y-1">
+            <li><a href="#" className="hover:underline">About us</a></li>
+            <li><a href="#" className="hover:underline">Pricing</a></li>
+            <li><a href="#" className="hover:underline">Log In</a></li>
+            <li><a href="#" className="hover:underline">Partners</a></li>
+          </ul>
         </div>
-      </Motion.div>
-      {/* Social Icons */}
-      <Motion.div
-        className="flex justify-center gap-6 mt-8 text-blue-600 text-2xl"
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, delay: 0.3 }}
-      >
-        <a href="#"><FaFacebookF className="hover:text-blue-800 transition" /></a>
-        <a href="#"><FaInstagram className="text-pink-500 hover:text-pink-700 transition" /></a>
-        <a href="#"><FaWhatsapp className="text-green-500 hover:text-green-700 transition" /></a>
-        <a href="#"><FaLinkedinIn className="text-blue-700 hover:text-blue-900 transition" /></a>
-        <a href="#"><FaTelegramPlane className="text-sky-500 hover:text-sky-700 transition" /></a>
-      </Motion.div>
-      {/* Footer bottom */}
-      <div className="relative mt-10 ">
-        <img
-          src={img}
-          alt="Mountains"
-          className="w-full h-auto object-cover rounded-b-3xl"
-        />
-        <Motion.div
-          className="absolute bottom-2  text-sm text-blue-700 font-bold flex flex-col items-start md:items-center lg:flex-row lg:px-10 lg:justify-between w-full md:w-full"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-        >
-          <span>© 2021 All Rights Reserved</span>
-          <span className="md:mt-1 lg:mt-0">© Design and developed by: WebX</span>
-        </Motion.div>
+
+        <div>
+          <h4 className="font-bold text-gray-800 mb-2">Client support</h4>
+          <ul className="space-y-1">
+            <li><a href="#" className="hover:underline">0800 755 333</a></li>
+            <li><a href="#" className="hover:underline">support@beany.nz</a></li>
+            <li><a href="#" className="hover:underline">Support centre</a></li>
+            <li><a href="#" className="hover:underline">Contact us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div className="mt-10 border-t pt-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500 max-w-screen-xl mx-auto px-4">
+        <p>© 2025 everest dmc New Zealand Ltd. All rights reserved.</p>
+        <div className="flex gap-4 flex-wrap">
+          <a href="#" className="hover:underline">Privacy Policy</a>
+          <a href="#" className="hover:underline">Terms & Conditions</a>
+          <a href="#" className="hover:underline">UK</a>
+          <a href="#" className="hover:underline">AU</a>
+        </div>
+        <div className="flex space-x-3 text-gray-500 mt-2 md:mt-0">
+          <FaFacebookF className="hover:text-gray-800 cursor-pointer" />
+          <FaInstagram className="hover:text-pink-600 cursor-pointer" />
+          <FaLinkedinIn className="hover:text-blue-800 cursor-pointer" />
+        </div>
       </div>
     </footer>
   );
