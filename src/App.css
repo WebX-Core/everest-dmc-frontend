@@ -1,4 +1,28 @@
 @import "tailwindcss";
 html {
   scroll-behavior: smooth;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #e0e7ff 0%, #f3f8ff 50%, #f0fdfa 100%);
+}
+body {
+  color: #22223b;
+}
+
+/* Modern button style */
+.btn-modern {
+  @apply bg-blue-600 text-white rounded-full px-6 py-2 font-semibold shadow-md hover:bg-blue-700 transition;
+}
+
+/* Card shadow for modern look */
+.card-modern {
+  @apply shadow-lg rounded-xl border border-gray-100 bg-white;
+}
+
+/* Animate fade-in */
+.animate-fadein {
+  animation: fadeIn 1s ease-in;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: none; }
 }

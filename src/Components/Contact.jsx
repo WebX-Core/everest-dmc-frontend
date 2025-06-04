@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Phone, Mail, HelpCircle, CalendarDays, CheckCircle } from "lucide-react";
+import { motion as Motion } from "framer-motion";
 
 const initialFormData = {
   fullName: "",
@@ -53,21 +54,34 @@ function ContactForm() {
   };
 
   return (
-    <section id="contact" className="bg-[#F3F8FF] px-4 py-16 md:px-16 mt-4">
-      <div className="max-w-6xl mx-auto text-center">
-        <p className="text-xs uppercase text-gray-400 mb-1">Get to Know Us</p>
-        <h2 className="text-3xl font-bold mb-2">Contact Us</h2>
-        <p className="text-sm text-gray-600 mb-8">Let's Plan Something Extraordinary Together</p>
-
-        <div className="flex flex-col md:flex-row justify-center gap-6 mb-8 text-sm">
-          <div className="flex items-center gap-2"><Phone size={18} /> +977-984305397 / +977-9801935775</div>
-          <div className="flex items-center gap-2"><Mail size={18} /> info@everestdmc.com</div>
-          <div className="flex items-center gap-2"><HelpCircle size={18} /> inquiry@everestdmc.com</div>
-        </div>
-
-        <div className="flex flex-col md:flex-row gap-8">
-          {/* Contact Form */}
-          <form onSubmit={handleSubmit} className="w-full md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+    <section id="contact" className="bg-gradient-to-br from-blue-50 via-white to-blue-100 px-4 py-20 md:px-0 min-h-[80vh] flex items-center justify-center">
+      <Motion.div
+        className="w-full max-w-5xl bg-white/80 rounded-3xl shadow-2xl p-8 md:p-14 flex flex-col md:flex-row gap-10 items-center"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+      >
+        {/* Left: Contact Info & Form */}
+        <div className="flex-1 flex flex-col gap-8">
+          <div className="mb-2">
+            <p className="text-xs uppercase text-blue-400 font-semibold tracking-wider mb-1">Get to Know Us</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-2">Contact Us</h2>
+            <p className="text-base text-gray-600 mb-4">Let's Plan Something Extraordinary Together</p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 text-sm text-blue-700 font-medium mb-4">
+            <div className="flex items-center gap-2 bg-blue-50 px-3 py-2 rounded-lg shadow"><Phone size={18} /> +977-984305397 / +977-9801935775</div>
+            <div className="flex items-center gap-2 bg-blue-50 px-3 py-2 rounded-lg shadow"><Mail size={18} /> info@everestdmc.com</div>
+            <div className="flex items-center gap-2 bg-blue-50 px-3 py-2 rounded-lg shadow"><HelpCircle size={18} /> inquiry@everestdmc.com</div>
+          </div>
+          <Motion.form
+            onSubmit={handleSubmit}
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
             <div>
               <input
                 type="text"
@@ -192,34 +206,43 @@ function ContactForm() {
             <div className="md:col-span-2">
               <button
                 type="submit"
-                className="w-full bg-gray-800 text-white py-2 px-6 rounded hover:bg-gray-600 transition-colors"
+                className="w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white py-3 px-6 rounded-xl font-bold shadow-lg hover:from-blue-600 hover:to-blue-800 transition-all duration-200"
               >
                 SUBMIT
               </button>
             </div>
-          </form>
-
-          {/* Map Embed */}
-          <div className="w-full md:w-1/3 h-96 md:h-auto">
-            <iframe
-              title="Dillibazar Kathmandu Map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3531.767126693231!2d85.32921677471844!3d27.706726724882303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198deab6f139%3A0xdf46dc3f3b8f5a2a!2sDillibazar%2C%20Kathmandu%2044600!5e0!3m2!1sen!2snp!4v1717437741711!5m2!1sen!2snp"
-              width="100%"
-              height="100%"
-              className="rounded border"
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
+          </Motion.form>
+          {submitted && (
+            <Motion.div
+              className="mt-4 flex justify-center items-center gap-2 text-green-600"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <CheckCircle size={20} /> <p>Form submitted successfully!</p>
+            </Motion.div>
+          )}
         </div>
-
-        {submitted && (
-          <div className="mt-4 flex justify-center items-center gap-2 text-green-600 mt-[20px]">
-            <CheckCircle size={20} /> <p>Form submitted successfully!</p>
-          </div>
-        )}
-      </div>
+        {/* Right: Map */}
+        <Motion.div
+          className="flex-1 w-full h-80 md:h-full rounded-2xl overflow-hidden shadow-lg border-2 border-blue-100"
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+        >
+          <iframe
+            title="Dillibazar Kathmandu Map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3531.767126693231!2d85.32921677471844!3d27.706726724882303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198deab6f139%3A0xdf46dc3f3b8f5a2a!2sDillibazar%2C%20Kathmandu%2044600!5e0!3m2!1sen!2snp!4v1717437741711!5m2!1sen!2snp"
+            width="100%"
+            height="100%"
+            className="w-full h-full border-0"
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </Motion.div>
+      </Motion.div>
     </section>
   );
 }
