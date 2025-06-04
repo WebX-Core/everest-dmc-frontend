@@ -115,7 +115,7 @@ const WeOffer = () => {
   return (
     <section
       id="services"
-      className="relative bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 py-16 px-4 md:px-10 lg:px-20 h-200"
+      className="relative bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 py-16 px-4 md:px-10 lg:px-20 h-250"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -146,7 +146,7 @@ const WeOffer = () => {
         <button 
           onClick={goToPrev}
           disabled={currentIndex === 0}
-          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-10 w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-gray-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
           aria-label="Previous slide"
         >
           <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -157,7 +157,7 @@ const WeOffer = () => {
         <button 
           onClick={goToNext}
           disabled={currentIndex >= offers.length - visibleCards}
-          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-10 w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-gray-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
           aria-label="Next slide"
         >
           <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -191,9 +191,9 @@ const WeOffer = () => {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
               >
-                <div className="relative bg-white/80 backdrop-blur-lg border border-white/30 rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 hover:shadow-3xl hover:border-white/50 h-full">
+                <div className="relative border border-blue-900/30  rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer h-full">
                   {/* Floating gradient orb on hover */}
-                  <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-r from-blue-400/30 to-purple-600/30 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  <div className="absolute -top-20 -right-20 w-40 h-40  rounded-full  group-hover:opacity-100 transition-opacity duration-700" />
                   
                   {/* Image */}
                   <div className="w-full h-64 overflow-hidden">
@@ -202,7 +202,6 @@ const WeOffer = () => {
                       alt={offer.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                   </div>
 
                   {/* Floating badge */}

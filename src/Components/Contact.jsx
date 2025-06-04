@@ -187,7 +187,7 @@ function ContactForm() {
 
       {/* Header with Enhanced Styling */}
       <div className="relative z-10">
-        <div className="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 text-white py-16 px-6 text-center relative overflow-hidden">
+        <div className="bg-gradient-to-r from-slate-900 via-[#1C4D9B] to-slate-900 text-white py-16 px-6 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse"></div>
           <div className="relative z-10">
             <h2 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent animate-pulse">
@@ -198,9 +198,6 @@ function ContactForm() {
               <br />
               <span className="text-yellow-300 font-semibold">Get in touch and let's chat about how we can help.</span>
             </p>
-            <div className="mt-8 flex justify-center">
-              <Sparkles className="w-8 h-8 text-blue-700 animate-spin" style={{animationDuration: '3s'}} />
-            </div>
           </div>
         </div>
 
