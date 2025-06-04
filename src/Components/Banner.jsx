@@ -18,14 +18,15 @@ const Banner = () => {
       initial={{ scale: 0.98, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 1 }}
+      id="home"
     >
       {/* Scroll Down Indicator */}
-<div className="absolute left-6 top-0  flex flex-col items-center gap-2 z-10">
-  <div className="w-[2px] h-[75vh] bg-white" />
-  <p className="text-sm text-white rotate-[-90deg] tracking-widest uppercase mt-14">
-    Scroll Down
-  </p>
-</div>
+      <div className="absolute left-6 top-0  flex flex-col items-center gap-2 z-10">
+        <div className="w-[2px] h-[70vh] bg-white" />
+        <p className="text-sm text-white rotate-[-90deg] tracking-widest uppercase mt-14">
+          Scroll Down
+        </p>
+      </div>
 
       {/* Video Background */}
       <video
@@ -36,7 +37,7 @@ const Banner = () => {
         className="absolute w-full h-full object-cover "
       >
         <source src="/bg-video.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
+        {/* Your browser does not support the video tag. */}
       </video>
 
       {/* Gradient Overlay */}
@@ -44,18 +45,9 @@ const Banner = () => {
 
       {/* Text Content */}
       <div className="relative text-center text-white px-2 lg:-mt-5 z-10">
-        <Motion.div
-          className="flex justify-center mb-2"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-        >
-        </Motion.div>
-        <h2 className="text-xl md:text-2xl font-light tracking-wide banner-title">
-          THE BEAUTY OF
-        </h2>
+       
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight banner-title">
-          EVEREST <span className="text-blue-900">MOUNTAIN</span>
+          MOUNT <span className="text-blue-900">EVEREST</span>
         </h1>
         <Motion.p
           className="mt-4 text-lg md:text-xl banner-title"
