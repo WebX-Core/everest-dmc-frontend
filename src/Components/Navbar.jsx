@@ -40,31 +40,31 @@ const Navbar = () => {
           </div>
           <a
             href="#about"
-            className="block md:inline-block text-blue-700 hover:text-blue-900 py-1 ml-10 md:ml-0 transition-all"
+            className="block md:inline-block text-blue-900 hover:text-blue-700 py-1 ml-10 md:ml-0 transition-all"
           >
             About
           </a>
           <a
             href="#services"
-            className="block md:inline-block text-blue-700 hover:text-blue-900 py-1 ml-10 md:ml-0 transition-all"
+            className="block md:inline-block text-blue-900 hover:text-blue-700 py-1 ml-10 md:ml-0 transition-all"
           >
             Our Services
           </a>
           <a
             href="#process"
-            className="block md:inline-block text-blue-700 hover:text-blue-900 py-1 ml-10 md:ml-0 transition-all"
+            className="block md:inline-block text-blue-900 hover:text-blue-700 py-1 ml-10 md:ml-0 transition-all"
           >
             Our Process
           </a>
           <a
             href="#clients"
-            className="block md:inline-block text-blue-700 hover:text-blue-900 py-1 ml-10 md:ml-0 transition-all"
+            className="block md:inline-block text-blue-900 hover:text-blue-700 py-1 ml-10 md:ml-0 transition-all"
           >
             Our Clients
           </a>
           <a
             href="#contact"
-            className="block md:inline-block text-blue-700 hover:text-blue-900 py-1 ml-10 md:ml-0 transition-all"
+            className="block md:inline-block text-blue-900 hover:text-blue-700 py-1 ml-10 md:ml-0 transition-all"
           >
             Contact Us
           </a>

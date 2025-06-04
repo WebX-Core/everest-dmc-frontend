@@ -131,12 +131,12 @@ function ContactForm() {
       ref={containerRef}
     >
       {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-violet-50 via-blue-50 to-cyan-50">
+      {/* <div className="absolute inset-0 bg-gradient-to-br from-violet-50 via-blue-50 to-cyan-50">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_50%)]"></div>
         <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full opacity-20 animate-pulse"></div>
         <div className="absolute bottom-20 right-20 w-48 h-48 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div>
         <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full opacity-20 animate-pulse" style={{animationDelay: '2s'}}></div>
-      </div>
+      </div> */}
 
       {/* Floating Elements */}
       <div className="absolute inset-0 pointer-events-none">
@@ -199,7 +199,7 @@ function ContactForm() {
               <span className="text-yellow-300 font-semibold">Get in touch and let's chat about how we can help.</span>
             </p>
             <div className="mt-8 flex justify-center">
-              <Sparkles className="w-8 h-8 text-yellow-300 animate-spin" style={{animationDuration: '3s'}} />
+              <Sparkles className="w-8 h-8 text-blue-700 animate-spin" style={{animationDuration: '3s'}} />
             </div>
           </div>
         </div>

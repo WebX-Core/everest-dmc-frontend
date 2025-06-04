@@ -115,7 +115,7 @@ const WeOffer = () => {
   return (
     <section
       id="services"
-      className="relative bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 py-16 px-4 md:px-10 lg:px-20 h-screen"
+      className="relative bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/50 py-16 px-4 md:px-10 lg:px-20 h-200"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10 overflow-hidden">

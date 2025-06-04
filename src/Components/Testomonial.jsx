@@ -131,8 +131,7 @@ function TestimonialSlider() {
             variants={itemVariants}
             className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed"
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tellus tincidunt
-            donec commodo scelerisque quis leo, egestas amet.
+          Hear directly from our satisfied clients about their experiences, the quality of our service, and the lasting impact we’ve made on their projects.
           </motion.p>
         </motion.div>
 
@@ -150,19 +149,19 @@ function TestimonialSlider() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12 mb-12 border border-blue-100/50"
-          >
+            className="bg-white/95 backdrop-blur-sm rounded-3xl p-8 md:p-12 mb-12 border border-blue-100 ml-50"
+                 style={{ maxWidth: "70%" }} >
             <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
               <motion.div
                 className="relative"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full blur-md opacity-20"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-blue-100 rounded-full blur-md opacity-20"></div>
                 <img
                   src={testimonials[activeIndex].image}
                   alt={testimonials[activeIndex].name}
-                  className="relative w-32 h-32 md:w-40 md:h-40 object-cover rounded-full border-4 border-white shadow-xl"
+                  className="relative w-32 h-32 md:w-40 md:h-40 object-cover rounded-full border-4 border-white shadow-sm"
                 />
               </motion.div>
               
@@ -262,7 +261,7 @@ function TestimonialSlider() {
                   {index === activeIndex && (
                     <motion.div
                       layoutId="activeRing"
-                      className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full blur-sm"
+                      className="absolute inset-0 bg-gradient-to-r from-blue-200 to-blue-200 rounded-full blur-sm"
                       transition={{ duration: 0.3 }}
                     />
                   )}
