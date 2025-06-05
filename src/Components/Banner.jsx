@@ -20,14 +20,6 @@ const Banner = () => {
       transition={{ duration: 1 }}
       id="home"
     >
-      {/* Scroll Down Indicator */}
-      <div className="absolute left-6 top-0  flex flex-col items-center gap-2 z-10">
-        <div className="w-[2px] h-[70vh] bg-white" />
-        <p className="text-sm text-white rotate-[-90deg] tracking-widest uppercase mt-14">
-          Scroll Down
-        </p>
-      </div>
-
       {/* Video Background */}
       <video
         autoPlay
@@ -40,13 +32,10 @@ const Banner = () => {
         {/* Your browser does not support the video tag. */}
       </video>
 
-      {/* Gradient Overlay */}
-      {/* <div className="absolute inset-0 bg-gradient-to-b from-blue-900/60 to-transparent z-0 rounded-b-3xl" /> */}
-
       {/* Text Content */}
       <div className="relative text-center text-white px-2 lg:-mt-5 z-10">
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight banner-title uppercase">
-          Your trusted B2B tour{" "} <br />
+          Your trusted B2B tour <br />
           <span className="text-blue-900">partner for Nepal</span>
         </h1>
         <Motion.p

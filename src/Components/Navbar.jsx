@@ -61,7 +61,7 @@ const Navbar = () => {
     <Motion.nav
       className={`w-full fixed top-0 z-50 transition-all duration-300 ${
         scrolledPastHero
-          ? "bg-white border-2 border-zinc-200"
+          ? "bg-white shadow-sm"
           : "bg-gradient-to-b from-white/60 to-transparent"
       }`}
       initial={{ y: -60, opacity: 0 }}

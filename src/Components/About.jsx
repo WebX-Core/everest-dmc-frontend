@@ -55,24 +55,18 @@ const About = () => {
   return (
     <section
       id="about"
-      className="flex items-center justify-center h-screen my-auto relative bg-white py-20 px-4 md:px-10 lg:px-20"
+      className="flex items-center justify-center h-screen my-auto relative bg-white  px-4 md:px-10 "
     >
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/10 to-purple-600/10 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-emerald-400/10 to-cyan-600/10 rounded-full blur-3xl"></div>
-      </div>
-
       <div className="relative w-8/12 mx-auto">
         {/* Right Side - Sticky About Content */}
         <div className="w-full ">
-          <div className="lg:sticky lg:top-20 space-y-8">
+          <div className="lg:sticky lg:top-10 space-y-4">
             <Motion.div
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               exit={{ opacity: 0, x: 80, y: 50 }}
               viewport={{ once: false, amount: 0.4 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="space-y-6"
+              className="space-y-4"
             >
               {/* Header section */}
               <div className="space-y-4 text-center">
@@ -86,30 +80,28 @@ const About = () => {
                   <span className="inline-block px-6 py-3 text-zinc-500 text-lg font-semibold tracking-wider uppercase rounded-full ">
                     Welcome to the Evetest DMC{" "}
                   </span>
+                  <div className="mb-10 text-center">
+                    <h2 className="text-5xl md:text-6xl font-light uppercase tracking-tight text-gray-900 mb-">
+                      <span className="block">The Masters</span>
+                      <span className="font-bold text-[#1C4D9B]">
+                        {" "}
+                        of Waterfront Developments
+                      </span>
+                    </h2>
+                  </div>
                 </Motion.div>
-
-                <Motion.h2
-                  className="text-5xl md:text-7xl leading-16 font-serif bg-gradient-to-r from-gray-800 via-gray-900 to-black bg-clip-text text-transparent"
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 40 }}
-                  viewport={{ once: false }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
-                >
-                  The Masters of Waterfront Developments
-                </Motion.h2>
               </div>
 
               {/* Content cards */}
               <Motion.div
-                className="space-y-6"
+                className="space-y-2"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 50 }}
                 viewport={{ once: false }}
                 transition={{ delay: 0.2, duration: 0.3 }}
               >
-                <div className="bg-transparent text-center backdrop-blur-sm border border-white/30 rounded-xl transition-all duration-300">
+                <div className="bg-transparent text-center backdrop-blur-sm transition-all duration-300">
                   <p className="text-gray-700 text-md leading-relaxed">
                     Everest DMC is a trusted B2B destination management company
                     in Nepal, offering personalized travel, trekking, and MICE
