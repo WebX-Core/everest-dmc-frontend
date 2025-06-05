@@ -45,9 +45,9 @@ const Banner = () => {
 
       {/* Text Content */}
       <div className="relative text-center text-white px-2 lg:-mt-5 z-10">
-       
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight banner-title">
-          MOUNT <span className="text-blue-900">EVEREST</span>
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight banner-title uppercase">
+          Your trusted B2B tour{" "} <br />
+          <span className="text-blue-900">partner for Nepal</span>
         </h1>
         <Motion.p
           className="mt-4 text-lg md:text-xl banner-title"
