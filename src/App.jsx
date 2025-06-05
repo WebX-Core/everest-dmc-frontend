@@ -17,7 +17,7 @@ function App() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.7 }}
-        className="bg-gradient-to-br from-[#e0e7ff] via-[#f3f8ff] to-[#f0fdfa] min-h-screen font-sans"
+        className="min-h-screen font-sans"
       >
         <Navbar />
         <Banner />
