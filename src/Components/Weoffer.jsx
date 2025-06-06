@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -6,8 +5,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const ImageGrid = () => {
-  const zoomImageRef = useRef(null);
-  const zoomTriggerRef = useRef(null);
+  const zoomRef = useRef(null);
+  const triggerRef = useRef(null);
 
   const images = [
     {
@@ -34,7 +33,8 @@ const ImageGrid = () => {
       id: 5,
       src: "https://assets-cdn.kathmandupost.com/uploads/source/news/2021/third-party/thumb2-1619021995.jpg",
       alt: "Image 5",
-      title: "Scaling Mount Everest",
+      title: "Our Services",
+      isZoomTarget: true,
     },
     {
       id: 6,
@@ -44,59 +44,51 @@ const ImageGrid = () => {
   ];
 
   useEffect(() => {
-    if (!zoomImageRef.current) return;
+    if (!zoomRef.current) return;
 
     gsap.fromTo(
-      zoomImageRef.current,
+      zoomRef.current,
+      { scale: 1 },
       {
-        scale: 1,
-        transformOrigin: "center center",
-      },
-      {
-        scale: 5,
+        scale: 3.472,
         ease: "power2.out",
         scrollTrigger: {
-          trigger: zoomImageRef.current,
+          trigger: zoomRef.current,
           start: "center 50%",
-          endTrigger: zoomTriggerRef.current,
-          end: "bottom -45%",
+          endTrigger: triggerRef.current,
+          end: "center top",
+          scrub: true,
+          pin: true,
+          // anticipatePin: 1,
           toggleActions: "play none none reverse",
-          scrub: 2,
-          markers: true,
+          // markers: true, // Uncomment to debug
         },
       }
     );
   }, []);
 
   return (
-    <div className="w-11/12 mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10" ref={zoomTriggerRef}>
+    <section id="services" className="w-11/12 mx-auto px-4 py-16 ">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6" ref={triggerRef}>
         {images.map((image) => {
-          const isZoomTarget = image.id === 5;
+          const isZoom = image.isZoomTarget;
 
           return (
             <div
               key={image.id}
               className={`relative overflow-hidden h-[60vh] w-full ${
-                isZoomTarget ? "z-[9999]" : "z-10"
-              }`}
-              ref={isZoomTarget ? zoomImageRef : null}
+                isZoom ? "z-[9999] " : "z-10"
+              } `}
+              ref={isZoom ? zoomRef : null}
             >
               <img
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-full object-cover transition-all duration-500 ease-in-out"
-                style={{
-                  zIndex: isZoomTarget ? 9999 : "auto",
-                  position: isZoomTarget ? "relative" : "static",
-                }}
+                className="w-full h-full object-cover z-0 transition-transform duration-500"
               />
-              {isZoomTarget && (
-                <div
-                  className="absolute inset-0 bg-blue-200 bg-opacity-50 flex items-center justify-center"
-                  style={{ zIndex: 10000 }}
-                >
-                  <h3 className="text-white text-3xl font-bold text-center px-4">
+              {isZoom && image.title && (
+                <div className="absolute inset-0 bg-[#1C4D9B] flex z-40 items-center justify-center">
+                  <h3 className="text-white text-2xl font-bold text-center px-6">
                     {image.title}
                   </h3>
                 </div>
@@ -106,12 +98,10 @@ const ImageGrid = () => {
         })}
       </div>
 
-      <div className="h-[100vh] bg-gray-100 mt-10" />
-    </div>
+      {/* Scroll padding for effect */}
+      <div className="h-[100vh]" />
+    </section>
   );
 };
 
 export default ImageGrid;
-
-
-

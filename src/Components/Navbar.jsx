@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import { motion as Motion } from "framer-motion";
 import logo from "../assets/logo.png";
@@ -7,15 +7,19 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const navbarRef = useRef(null);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Check if scrolled past first screen (100vh)
+      const currentScrollY = window.scrollY;
       const heroHeight = window.innerHeight;
-      const scrollPosition = window.scrollY;
-      setScrolledPastHero(scrollPosition > heroHeight - 100);
+
+      // Check if scrolled past first screen (100vh)
+      setScrolledPastHero(currentScrollY > heroHeight - 100);
 
       // Active section detection
       const sections = [
@@ -26,7 +30,7 @@ const Navbar = () => {
         "clients",
         "contact",
       ];
-      const sectionScrollPosition = scrollPosition + 100;
+      const sectionScrollPosition = currentScrollY + 100;
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -43,11 +47,27 @@ const Navbar = () => {
           }
         }
       }
+
+      // Hide/show navbar logic
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down
+        setVisible(false);
+      } else {
+        // Scrolling up
+        setVisible(true);
+      }
+
+      // For mobile menu, if open and user scrolls, close it
+      if (isOpen && Math.abs(currentScrollY - lastScrollY) > 10) {
+        setIsOpen(false);
+      }
+
+      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY, isOpen]);
 
   const navLinks = [
     { id: "home", label: "Home" },
@@ -59,18 +79,22 @@ const Navbar = () => {
 
   return (
     <Motion.nav
+      ref={navbarRef}
       className={`w-full fixed top-0 z-60 transition-all duration-300 ${
         scrolledPastHero
           ? "bg-white shadow-sm"
           : "bg-gradient-to-b from-white/60 to-transparent"
       }`}
       style={{
-        zIndex:99999
+        zIndex: 99999,
+        transform: visible ? "translateY(0)" : "translateY(-100%)",
+        transition: "transform 0.1s ease-out",
       }}
-      initial={{ y: -60, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: visible ? 0 : -80, opacity: 1 }}
       transition={{ duration: 0.7 }}
     >
+      {/* Rest of your navbar code remains the same */}
       <div className="w-11/12 mx-auto flex items-center justify-between px-5 py-4">
         {/* Left: Logo */}
         <div className="flex items-center space-x-2">

@@ -8,6 +8,7 @@ import TestimonialSlider from "./Components/Testomonial";
 import ContactForm from "./Components/Contact";
 import Footer from "./Components/footer";
 import { AnimatePresence, motion } from "framer-motion";
+import TravelPackages from "./Components/our-services/Service";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Banner />
         <About />
         <WeOffer />
+        <TravelPackages />
         <TeamProcess />
         <TestimonialSlider />
         <ContactForm />
