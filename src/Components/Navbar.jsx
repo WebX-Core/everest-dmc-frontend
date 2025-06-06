@@ -59,11 +59,14 @@ const Navbar = () => {
 
   return (
     <Motion.nav
-      className={`w-full fixed top-0 z-50 transition-all duration-300 ${
+      className={`w-full fixed top-0 z-60 transition-all duration-300 ${
         scrolledPastHero
           ? "bg-white shadow-sm"
           : "bg-gradient-to-b from-white/60 to-transparent"
       }`}
+      style={{
+        zIndex:99999
+      }}
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7 }}

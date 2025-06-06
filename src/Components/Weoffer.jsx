@@ -1,6 +1,14 @@
-import React from "react";
+
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ImageGrid = () => {
+  const zoomImageRef = useRef(null);
+  const zoomTriggerRef = useRef(null);
+
   const images = [
     {
       id: 1,
@@ -24,49 +32,86 @@ const ImageGrid = () => {
     },
     {
       id: 5,
-      src: "https://cms.discoveryworldtrekking.com/media/4796/everesst.webp",
+      src: "https://assets-cdn.kathmandupost.com/uploads/source/news/2021/third-party/thumb2-1619021995.jpg",
       alt: "Image 5",
-      hasOverlay: true,
-      title: "Featured Destination",
-      bgColor: "bg-[#1C4D9B]",
+      title: "Scaling Mount Everest",
     },
     {
       id: 6,
-      src: "https://assets-cdn.kathmandupost.com/uploads/source/news/2021/third-party/thumb2-1619021995.jpg",
+      src: "https://cms.discoveryworldtrekking.com/media/4796/everesst.webp",
       alt: "Image 6",
     },
   ];
 
+  useEffect(() => {
+    if (!zoomImageRef.current) return;
+
+    gsap.fromTo(
+      zoomImageRef.current,
+      {
+        scale: 1,
+        transformOrigin: "center center",
+      },
+      {
+        scale: 5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: zoomImageRef.current,
+          start: "center 50%",
+          endTrigger: zoomTriggerRef.current,
+          end: "bottom -45%",
+          toggleActions: "play none none reverse",
+          scrub: 2,
+          markers: true,
+        },
+      }
+    );
+  }, []);
+
   return (
     <div className="w-11/12 mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-        {images.map((image, index) => (
-          <div
-            key={image.id}
-            className={`relative overflow-hidden h-[60vh] ${
-              index === 4 ? "md:col-span-1" : ""
-            }`}
-          >
-            <img
-              src={image.src}
-              alt={image.alt}
-              className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-            />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10" ref={zoomTriggerRef}>
+        {images.map((image) => {
+          const isZoomTarget = image.id === 5;
 
-            {image.hasOverlay && (
-              <div
-                className={`absolute inset-0 ${image.bgColor} bg-opacity-70 flex flex-col items-center justify-center p-4 text-center`}
-              >
-                <h3 className="text-white text-3xl font-bold mb-2">
-                  {image.title}
-                </h3>
-              </div>
-            )}
-          </div>
-        ))}
+          return (
+            <div
+              key={image.id}
+              className={`relative overflow-hidden h-[60vh] w-full ${
+                isZoomTarget ? "z-[9999]" : "z-10"
+              }`}
+              ref={isZoomTarget ? zoomImageRef : null}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover transition-all duration-500 ease-in-out"
+                style={{
+                  zIndex: isZoomTarget ? 9999 : "auto",
+                  position: isZoomTarget ? "relative" : "static",
+                }}
+              />
+              {isZoomTarget && (
+                <div
+                  className="absolute inset-0 bg-blue-200 bg-opacity-50 flex items-center justify-center"
+                  style={{ zIndex: 10000 }}
+                >
+                  <h3 className="text-white text-3xl font-bold text-center px-4">
+                    {image.title}
+                  </h3>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
+
+      <div className="h-[100vh] bg-gray-100 mt-10" />
     </div>
   );
 };
 
 export default ImageGrid;
+
+
+
