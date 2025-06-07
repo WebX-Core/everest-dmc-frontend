@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { motion as Motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { FaMountain } from "react-icons/fa";
 
@@ -13,7 +13,7 @@ const Banner = () => {
   }, []);
 
   return (
-    <Motion.div
+    <motion.div
       className="relative w-full h-screen flex items-center justify-center overflow-hidden"
       initial={{ scale: 0.98, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
@@ -35,19 +35,19 @@ const Banner = () => {
       {/* Text Content */}
       <div className="relative text-center text-white px-2 lg:-mt-5 z-10">
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight banner-title uppercase">
-          Your trusted B2B tour <br />
-          <span className="text-blue-900">partner for Nepal</span>
+          Crafting Journeys, <br />
+          <span className="text-blue-900">Creating Memories.</span>
         </h1>
-        <Motion.p
-          className="mt-4 text-lg md:text-xl banner-title"
+        <motion.p
+          className="mt-4 text-xl md:text-2xl banner-title"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
         >
-          Discover breathtaking adventures with us
-        </Motion.p>
+          Let the peaks tell your story.
+        </motion.p>
       </div>
-    </Motion.div>
+    </motion.div>
   );
 };
 

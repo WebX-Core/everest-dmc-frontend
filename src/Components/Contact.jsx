@@ -6,6 +6,7 @@ const AwwwardsStyleContact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     message: "",
   });
   const [activeField, setActiveField] = useState(null);
@@ -50,6 +51,7 @@ const AwwwardsStyleContact = () => {
 
   return (
     <section
+      id="contact"
       ref={ref}
       className="w-11/12  mx-auto relative min-h-screen py-20 px-4 overflow-hidden  text-black"
     >
@@ -66,8 +68,8 @@ const AwwwardsStyleContact = () => {
           variants={itemVariants}
         >
           <h2 className="w-full text-6xl md:text-6xl font-bold mb-6 ">
-            <span className="block">Let's make</span>
-            <span className="text-[#1C4D9B]">Travel Fun</span>
+            <span className="block">Let's Collaborate</span>
+            <span className="text-[#1C4D9B]">To Make Travel Fun</span>
           </h2>
           <p className="text-xl text-center text-gray-400">
             Experience the unforgatable moment with Everest DMC in Nepal.
@@ -125,7 +127,7 @@ const AwwwardsStyleContact = () => {
                   className="w-8/12 mx-auto p-10 rounded-xl border border-zinc-200"
                 >
                   <div className="space-y-8">
-                    <div className="relative bg-zinc-50 rounded-2xl">
+                    <div className="relative bg-blue-50 rounded-2xl">
                       <label
                         htmlFor="name"
                         className={`absolute left-4 transition-all duration-300 ${
@@ -146,11 +148,11 @@ const AwwwardsStyleContact = () => {
                         }
                         onFocus={() => setActiveField("name")}
                         onBlur={() => setActiveField(null)}
-                        className="w-full bg-transparent border-b border-white/20 pt-6 pb-2 px-4 focus:border-[#1C4D9B] focus:outline-none"
+                        className="w-full bg-transparent border-b border-white/20 pt-6 pb-2 px-4 focus:border-[#1C4D9B] focus:outline-none rounded-2xl"rounded-2xl
                       />
                     </div>
 
-                    <div className="relative bg-zinc-50 rounded-2xl">
+                    <div className="relative bg-blue-50 rounded-2xl">
                       <label
                         htmlFor="email"
                         className={`absolute left-4 transition-all duration-300 ${
@@ -171,11 +173,35 @@ const AwwwardsStyleContact = () => {
                         }
                         onFocus={() => setActiveField("email")}
                         onBlur={() => setActiveField(null)}
-                        className="w-full bg-transparent border-b border-white/20 pt-6 pb-2 px-4 focus:border-[#1C4D9B] focus:outline-none"
+                        className="w-full bg-transparent border-b border-white/20 pt-6 pb-2 px-4 focus:border-[#1C4D9B] focus:outline-none rounded-2xl"rounded-2xl
+                      />
+                    </div>
+                    <div className="relative bg-blue-50 rounded-2xl">
+                      <label
+                        htmlFor="phone"
+                        className={`absolute left-4 transition-all duration-300 ${
+                          activeField === "phone" || formData.phone
+                            ? "top-0 text-xs text-[#1C4D9B]"
+                            : "top-4 text-gray-500"
+                        }`}
+                      >
+                        Phone number
+                      </label>
+                      <input
+                        id="phone"
+                        name="phone"
+                        type="phone"
+                        value={formData.phone}
+                        onChange={(e) =>
+                          setFormData({ ...formData, phone: e.target.value })
+                        }
+                        onFocus={() => setActiveField("phone")}
+                        onBlur={() => setActiveField(null)}
+                        className="w-full bg-transparent border-b border-white/20 pt-6 pb-2 px-4 focus:border-[#1C4D9B] focus:outline-none rounded-2xl "
                       />
                     </div>
 
-                    <div className="relative bg-zinc-50 rounded-2xl">
+                    <div className="relative bg-blue-50 rounded-2xl">
                       <label
                         htmlFor="message"
                         className={`absolute left-4 transition-all duration-300 ${
@@ -196,7 +222,7 @@ const AwwwardsStyleContact = () => {
                         }
                         onFocus={() => setActiveField("message")}
                         onBlur={() => setActiveField(null)}
-                        className="w-full bg-transparent border-b border-white/20 pt-6 pb-2 px-4 focus:border-[#1C4D9B] focus:outline-none resize-none"
+                        className="w-full bg-transparent border-b border-white/20 pt-6 pb-2 px-4 focus:border-[#1C4D9B] focus:outline-none rounded-2xl rounded-2xlresize-none"
                       />
                     </div>
 

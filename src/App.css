@@ -6,6 +6,7 @@ html {
 }
 body {
   color: #22223b;
+  overflow-x: hidden;
 }
 
 /* Modern button style */
@@ -25,4 +26,13 @@ body {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: none; }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

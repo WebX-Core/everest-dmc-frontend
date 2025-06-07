@@ -7,6 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 const ImageGrid = () => {
   const zoomRef = useRef(null);
   const triggerRef = useRef(null);
+  const textRef = useRef(null); //
 
   const images = [
     {
@@ -44,7 +45,7 @@ const ImageGrid = () => {
   ];
 
   useEffect(() => {
-    if (!zoomRef.current) return;
+    if (!zoomRef.current || !textRef.current) return;
 
     gsap.fromTo(
       zoomRef.current,
@@ -56,7 +57,7 @@ const ImageGrid = () => {
           trigger: zoomRef.current,
           start: "center 50%",
           endTrigger: triggerRef.current,
-          end: "center top",
+          end: "center top-=0",
           scrub: true,
           pin: true,
           // anticipatePin: 1,
@@ -65,6 +66,16 @@ const ImageGrid = () => {
         },
       }
     );
+    // Fade out the "Our Services" text
+    gsap.to(textRef.current, {
+      opacity: 0,
+      scrollTrigger: {
+        trigger: zoomRef.current,
+        start: "top 50%",
+        end: " top",
+        scrub: true,
+      },
+    });
   }, []);
 
   return (
@@ -88,7 +99,10 @@ const ImageGrid = () => {
               />
               {isZoom && image.title && (
                 <div className="absolute inset-0 bg-[#1C4D9B] flex z-40 items-center justify-center">
-                  <h3 className="text-white text-2xl font-bold text-center px-6">
+                  <h3
+                    ref={textRef}
+                    className="text-white text-3xl uppercase font-bold text-center px-6 border-t-2 border-b-2 py-3"
+                  >
                     {image.title}
                   </h3>
                 </div>

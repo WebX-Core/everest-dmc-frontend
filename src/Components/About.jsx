@@ -1,5 +1,5 @@
 import React from "react";
-import { motion as Motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 // const points = [
 //   {
@@ -61,7 +61,7 @@ const About = () => {
         {/* Right Side - Sticky About Content */}
         <div className="w-full ">
           <div className="lg:sticky lg:top-10 space-y-4">
-            <Motion.div
+            <motion.div
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               exit={{ opacity: 0, x: 80, y: 50 }}
               viewport={{ once: false, amount: 0.4 }}
@@ -70,7 +70,7 @@ const About = () => {
             >
               {/* Header section */}
               <div className="space-y-4 text-center">
-                <Motion.div
+                <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 30 }}
@@ -85,15 +85,15 @@ const About = () => {
                       <span className="block">The Masters</span>
                       <span className="font-bold text-[#1C4D9B]">
                         {" "}
-                        of Waterfront Developments
+                        of Himalayan Experiences
                       </span>
                     </h2>
                   </div>
-                </Motion.div>
+                </motion.div>
               </div>
 
               {/* Content cards */}
-              <Motion.div
+              <motion.div
                 className="space-y-2"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -103,16 +103,19 @@ const About = () => {
               >
                 <div className="bg-transparent text-center backdrop-blur-sm transition-all duration-300">
                   <p className="text-gray-700 text-md leading-relaxed">
-                    Everest DMC is a trusted B2B destination management company
-                    in Nepal, offering personalized travel, trekking, and MICE
-                    services across the majestic Himalayas. Since 2018, we've
-                    provided unmatched local expertise, tailor-made experiences,
-                    and 24/7 support for clients worldwide, all while promoting
-                    responsible tourism and strong community values.
+                    Everest DMC is a trusted B2B Destination Management Company
+                    based in Nepal, specializing in personalized travel,
+                    trekking, and MICE solutions across the breathtaking
+                    Himalayas. Since 2018, we&apos;ve been delivering unmatched
+                    local expertise, tailor-made itineraries, and
+                    round-the-clock support to travel partners and clients
+                    around the globe. With a strong commitment to responsible
+                    tourism and community empowerment, Everest DMC ensures every
+                    journey is not just seamless—but truly meaningful.
                   </p>
                 </div>
-              </Motion.div>
-            </Motion.div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
-import { motion as Motion } from "framer-motion";
+import { motion } from "framer-motion";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
@@ -74,11 +74,11 @@ const Navbar = () => {
     { id: "about", label: "About" },
     { id: "services", label: "Our Services" },
     { id: "process", label: "Our Process" },
-    { id: "clients", label: "Our Clients" },
+    { id: "testimonials", label: "Our Clients" },
   ];
 
   return (
-    <Motion.nav
+    <motion.nav
       ref={navbarRef}
       className={`w-full fixed top-0 z-60 transition-all duration-300 ${
         scrolledPastHero
@@ -160,12 +160,12 @@ const Navbar = () => {
                   : "border-[#1C4D9B] bg-[#1C4D9B]"
               }`}
             >
-              Contact Now
+              Contact Us
             </span>
           </a>
         </div>
       </div>
-    </Motion.nav>
+    </motion.nav>
   );
 };
 
