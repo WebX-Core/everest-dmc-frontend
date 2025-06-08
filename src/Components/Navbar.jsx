@@ -137,7 +137,13 @@ const Navbar = () => {
       <div className="w-11/12  mx-auto flex flex-wrap items-center justify-between px-4 py-3">
         {/* Logo */}
         <div className="flex-shrink-0">
-          <img src={logo} alt="Logo" className="h-6 sm:h-7 md:h-8 lg:h-12 w-auto drop-shadow-lg" />
+          <a href="/" className="cursor-pointer">
+            <img
+              src={logo}
+              alt="Logo"
+              className="h-6 sm:h-7 md:h-8 lg:h-12 w-auto drop-shadow-lg"
+            />
+          </a>
         </div>
 
         {/* Hamburger - Mobile Only */}
