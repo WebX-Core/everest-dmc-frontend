@@ -8,17 +8,24 @@ import TestimonialSlider from "./Components/Testomonial";
 import ContactForm from "./Components/Contact";
 import Footer from "./Components/footer";
 import TravelPackages from "./Components/our-services/Service";
-import Loader from "./Components/preloader/Preloader"; // Import your loader
+import Loader from "./Components/preloader/Preloader";
 import { AnimatePresence, motion } from "framer-motion";
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(
+    sessionStorage.getItem("hasLoaded") ? false : true
+  );
 
   useEffect(() => {
-    // Simulate loading duration (e.g., API fetch, image preload, etc.)
-    const timer = setTimeout(() => setLoading(false), 2000);
+    if (!loading) return;
+
+    const timer = setTimeout(() => {
+      setLoading(false);
+      sessionStorage.setItem("hasLoaded", "true");
+    }, 2000);
+
     return () => clearTimeout(timer);
-  }, []);
+  }, [loading]);
 
   return (
     <AnimatePresence mode="wait">
