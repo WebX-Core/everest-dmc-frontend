@@ -3,6 +3,7 @@ import Navbar from "./Components/Navbar";
 import Banner from "./Components/Banner";
 import About from "./Components/About";
 import WeOffer from "./Components/Weoffer";
+// import Services from "./Components/our-services/Service";
 import TeamProcess from "./Components/Teamprocess";
 import TestimonialSlider from "./Components/Testomonial";
 import ContactForm from "./Components/Contact";
@@ -33,6 +34,7 @@ function App() {
         <Banner />
         <About />
         <WeOffer />
+
         <TravelPackages />
         <TeamProcess />
         <TestimonialSlider />

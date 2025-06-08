@@ -1,6 +1,6 @@
 @import "tailwindcss";
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth !important;
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   background: linear-gradient(135deg, #e0e7ff 0%, #f3f8ff 50%, #f0fdfa 100%);
 }
@@ -35,4 +35,9 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+* {
+  scroll-behavior: smooth !important;
+  box-sizing: border-box;
 }
