@@ -56,70 +56,67 @@ const TestimonialSlider = () => {
   }, []);
 
   return (
-    <div
-      id="testimonials"
-      className="relative w-full h-[120vh] overflow-hidden text-white font-sans bg-black"
+   <div
+  id="testimonials"
+  className="relative w-full min-h-screen overflow-hidden text-white font-sans bg-black"
+>
+  <AnimatePresence mode="wait">
+    <motion.div
+      key={testimonials[current].id}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0.9 }}
+      transition={{ duration: 0.5 }}
+      className="absolute inset-0 w-full h-full overflow-hidden"
     >
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={testimonials[current].id}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0.9 }}
-          transition={{ duration: 0.5 }}
-          className="absolute inset-0 w-full h-full overflow-hidden"
-        >
-          <div
-            className="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-500"
-            style={{ backgroundImage: `url(${testimonials[current].bg})` }}
-          ></div>
-          <div className="absolute inset-0 bg-black/60"></div>
+      {/* Background image */}
+      <div
+        className="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-500"
+        style={{ backgroundImage: `url(${testimonials[current].bg})` }}
+      ></div>
+      <div className="absolute inset-0 bg-black/60"></div>
 
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between w-full h-full px-10 md:px-24 py-10">
-            <div className="max-w-xl">
-              <p
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 50 }}
-                viewport={{ once: false }}
-                transition={{ delay: 0.2, duration: 0.3 }}
-                className="text-3xl md:text-5xl font-semibold leading-snug"
+      {/* Content */}
+      <div className="relative z-10 flex flex-col md:flex-row items-center justify-between w-full h-full px-4 sm:px-6 md:px-24 py-10">
+        <div className="max-w-2xl w-full text-center md:text-left">
+          <p className="text-xl sm:text-2xl md:text-4xl font-semibold leading-snug">
+            "{testimonials[current].quote}"
+          </p>
+          <p className="mt-4 text-base md:text-lg font-medium">
+            {testimonials[current].name}{" "}
+            <span className="text-sm font-light opacity-70">
+              {testimonials[current].title}
+            </span>
+          </p>
+
+          {/* Scrollable thumbnails */}
+          <div className="mt-6 md:mt-10 w-full overflow-x-auto flex gap-4 items-center pb-2 scrollbar-hide">
+            {testimonials.map((t, index) => (
+              <button
+                key={t.id}
+                onClick={() => setCurrent(index)}
+                className={`w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 min-w-[3.5rem] rounded-full overflow-hidden border-2 transition duration-300 flex-shrink-0 ${
+                  current === index
+                    ? "border-white"
+                    : "border-transparent opacity-50 hover:opacity-80 hover:border-white"
+                }`}
               >
-                "{testimonials[current].quote}"
-              </p>
-              <p className="mt-6 text-lg font-medium">
-                {testimonials[current].name}{" "}
-                <span className="text-sm font-light opacity-70">
-                  {testimonials[current].title}
-                </span>
-              </p>
-
-              {/* Pagination Scrollable Thumbnails */}
-              <div className="mt-10 w-full max-w-full overflow-x-auto flex gap-4 items-center pb-2 scrollbar-hide">
-                {testimonials.map((t, index) => (
-                  <button
-                    key={t.id}
-                    onClick={() => setCurrent(index)}
-                    className={`w-24 cursor-pointer h-24 min-w-[3.5rem] rounded-full overflow-hidden border-2 transition duration-300 flex-shrink-0 ${
-                      current === index
-                        ? "border-white"
-                        : "border-transparent opacity-50 hover:opacity-80 hover:border-white"
-                    }`}
-                  >
-                    <img
-                      src={t.image}
-                      alt={t.name}
-                      className="w-full h-full object-cover bg-center"
-                    />
-                  </button>
-                ))}
-              </div>
-            </div>
+                <img
+                  src={t.image}
+                  alt={t.name}
+                  className="w-full h-full object-cover bg-center"
+                />
+              </button>
+            ))}
           </div>
-        </motion.div>
-      </AnimatePresence>
-    </div>
+        </div>
+      </div>
+    </motion.div>
+  </AnimatePresence>
+</div>
+
   );
 };
 
 export default TestimonialSlider;
+

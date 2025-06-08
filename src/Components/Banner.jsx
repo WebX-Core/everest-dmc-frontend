@@ -26,7 +26,7 @@ const Banner = () => {
         loop
         muted
         playsInline
-        className="absolute w-full h-full object-cover "
+        className="absolute w-full h-full object-cover top-0 left-0 z-0"
       >
         <source src="/bg-video.mp4" type="video/mp4" />
         {/* Your browser does not support the video tag. */}

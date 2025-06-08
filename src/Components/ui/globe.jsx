@@ -1,10 +1,10 @@
-"use client";
 import { useEffect, useRef, useState } from "react";
 import { Color, Scene, Fog, PerspectiveCamera, Vector3 } from "three";
 import ThreeGlobe from "three-globe";
 import { useThree, Canvas, extend } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import countries from "@/data/globe.json";
+import React from 'react'
 
 extend({ ThreeGlobe: ThreeGlobe });
 
@@ -14,7 +14,7 @@ const cameraZ = 300;
 
 // let numbersOfRings = [0];
 
-export function Globe({ globeConfig, data }) {
+export default function Globe({ globeConfig, data }) {
   const globeRef = useRef(null);
   const groupRef = useRef();
   const [isInitialized, setIsInitialized] = useState(false);
