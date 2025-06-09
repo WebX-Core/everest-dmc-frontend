@@ -4,12 +4,13 @@ import Banner from "./Components/Banner";
 import About from "./Components/About";
 import WeOffer from "./Components/Weoffer";
 import TeamProcess from "./Components/Teamprocess";
-import TestimonialSlider from "./Components/Testomonial";
+// import TestimonialSlider from "./Components/Testomonial";
 import ContactForm from "./Components/Contact";
 import Footer from "./Components/footer";
 import TravelPackages from "./Components/our-services/Service";
 import Loader from "./Components/preloader/Preloader";
 import { AnimatePresence, motion } from "framer-motion";
+import ImageGridDivider from "./Components/divider/Divider";
 
 function App() {
   const [loading, setLoading] = useState(
@@ -55,7 +56,8 @@ function App() {
           <WeOffer />
           <TravelPackages />
           <TeamProcess />
-          <TestimonialSlider />
+          <ImageGridDivider image="https://cdn.pixabay.com/photo/2018/04/22/18/38/mountain-3341919_1280.jpg" />
+          {/* <TestimonialSlider /> */}
           <ContactForm />
           <Footer />
         </motion.div>

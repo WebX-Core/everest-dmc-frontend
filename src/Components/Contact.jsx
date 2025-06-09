@@ -65,8 +65,8 @@ const AwwwardsStyleContact = () => {
     {/* Section header */}
     <motion.div className="mb-16 text-center" variants={itemVariants}>
       <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
-        <span className="block">Let's Collaborate</span>
-        <span className="text-[#1C4D9B]">To Make Travel Fun</span>
+        <span className="block">Send Us Your</span>
+        <span className="text-[#1C4D9B]">Enquiry Below</span>
       </h2>
       <p className="text-base sm:text-lg text-gray-400">
         Experience the unforgettable moment with Everest DMC in Nepal.
