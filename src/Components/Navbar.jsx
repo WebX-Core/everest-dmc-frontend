@@ -21,7 +21,6 @@ const Navbar = () => {
     { id: "about", label: "About" },
     { id: "services", label: "Our Services" },
     { id: "process", label: "Our Process" },
-    { id: "testimonials", label: "Our Clients" },
   ];
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -65,7 +64,6 @@ const Navbar = () => {
         "about",
         "services",
         "process",
-        "testimonials",
         "contact",
       ];
 

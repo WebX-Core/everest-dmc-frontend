@@ -1,4 +1,4 @@
-import React, { use, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 const TravelPackages = () => {
@@ -19,7 +19,10 @@ const TravelPackages = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-[#1C4D9B] relative z-[9999] overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="bg-[#1C4D9B] relative z-[9999] overflow-hidden"
+    >
       <motion.div
         className="w-11/12 mx-auto text-white pb-32 px-2"
         initial={{ opacity: 0, y: 50 }}
@@ -28,14 +31,12 @@ const TravelPackages = () => {
         viewport={{ once: false }}
         transition={{ delay: 0.2, duration: 0.3 }}
       >
-        <h3
-          className="w-fit mx-auto mb-16 text-white text-4xl uppercase font-bold text-center px-6 border-b-2 py-3"
-        >
+        <h3 className="w-fit mx-auto mb-16 text-white text-4xl uppercase font-bold text-center px-6 border-b-2 py-3">
           More Adventures
         </h3>
         <h2
           className="w-full sm:w-11/11 md:w-4/5 lg:w-3/5 xl:w-1/2 mx-auto text-white text-base sm:text-lg md:text-xl font-normal mb-20 text-center"
-          style={{ textJustify: 'inter-word' }}
+          style={{ textJustify: "inter-word" }}
         >
           We specialize in delivering the finest travel experiences in the
           iconic Mount Everest region, offering expertly curated packages
