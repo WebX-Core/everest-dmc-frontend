@@ -17,20 +17,22 @@ const OurProcess = () => {
             <div className="w-11/12 mx-auto px-2 md:px-6 lg:px-6 xl:px-24">
               <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6">
                 <span className="block">Our</span>
-                <span className="font-bold text-[#1C4D9B] uppercase">Process</span>
+                <span className="font-bold text-[#1C4D9B] uppercase">
+                  Process
+                </span>
               </h2>
               <div className="w-24 h-0.5 bg-[#1C4D9B] mb-8 mt-0"></div>
               <p className="text-xl text-gray-600 mb-16 leading-relaxed text-justify">
-                Crafting unforgettable journeys with precision and passion. Our meticulous
-                approach ensures every detail exceeds expectations.
+                Crafting unforgettable journeys with precision and passion. Our
+                meticulous approach ensures every detail exceeds expectations.
               </p>
 
               {/* Stats Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {[
-                  { number: "7+", label: "Years of Expertise" },
-                  { number: "22+", label: "Everest Destinations" },
-                  { number: "200+", label: "Happy Clients" },
+                  { number: "20+", label: "Years of Expertise" },
+                  { number: "15+", label: "Everest Destinations" },
+                  { number: "28k+", label: "Happy Clients" },
                 ].map((stat, index) => (
                   <div
                     key={index}
@@ -68,7 +70,9 @@ const OurProcess = () => {
                     </div>
                   ))
                 ) : (
-                  <p className="text-gray-500 italic">No process steps available.</p>
+                  <p className="text-gray-500 italic">
+                    No process steps available.
+                  </p>
                 )}
               </div>
             </div>
@@ -77,16 +81,12 @@ const OurProcess = () => {
           {/* Right Column - Sticky Rotating Image */}
           <div className="relative w-full lg:w-auto hidden lg:flex flex-1">
             <div className="sticky top-0 h-screen flex items-center justify-center w-full">
-              <div className="relative w-full h-[20rem] md:h-[30rem] lg:h-[36rem]">
-                <React.Suspense
-                  fallback={
-                    <div className="flex justify-center items-center flex-col h-full">
-                      <Loader className="h-12 w-12 text-blue-500 animate-spin" />
-                    </div>
-                  }
-                >
-                  <GlobeDemo />
-                </React.Suspense>
+              <div className="relative w-fit h-[50vh] md:h-[40rem] lg:h-[70vh]">
+                <img
+                  src="https://storage.googleapis.com/support-forums-api/attachment/thread-149091783-2424697016811330306.png"
+                  alt="google map"
+                  className="h-full object-contain rounded-2xl"
+                ></img>
               </div>
             </div>
           </div>

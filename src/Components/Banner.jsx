@@ -34,17 +34,17 @@ const Banner = () => {
 
       {/* Text Content */}
       <div className="relative text-center text-white px-2 lg:-mt-5 z-10">
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight banner-title uppercase">
+        <h1 className="text-3xl md:text-6xl font-extrabold tracking-tight banner-title uppercase">
           Crafting Journeys, <br />
           <span className="text-blue-900">Creating Memories.</span>
         </h1>
         <motion.p
-          className="mt-4 text-xl md:text-2xl banner-title"
+          className="text-sm md:text-xl py-2 px-6 font-semibold mt-2 banner-title bg-white w-fit mx-auto text-blue-900"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
+          transition={{ delay: 0.3 }}
         >
-          Let the peaks tell your story.
+          Your gateway to seamless B2B tours partner in Nepal
         </motion.p>
       </div>
     </motion.div>

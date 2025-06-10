@@ -8,24 +8,17 @@ gsap.registerPlugin(ScrollTrigger);
 const ImageGrid = () => {
   const zoomRef = useRef(null);
   const triggerRef = useRef(null);
-  const textRef = useRef(null); //
+  const textRef = useRef(null);
 
   useEffect(() => {
-    if (!zoomRef.current || !textRef.current) return;
-    // const height = window.innerHeight;
-    const width = window.innerWidth;
+    // Check if the screen width is larger than tablet size (1024px)
+    const isDesktop = window.innerWidth >= 1024;
+
+    if (!isDesktop || !zoomRef.current || !textRef.current) return;
 
     let scaleValue = 3.472;
 
-    if (width < 480) {
-      scaleValue = 4;
-    } else if (width < 768) {
-      scaleValue = 2.5;
-    } else if (width < 1024) {
-      scaleValue = 3.0;
-    }
-
-    // Zoom animation
+    // Zoom animation (only for desktop)
     gsap.fromTo(
       zoomRef.current,
       { scale: 1 },
@@ -43,7 +36,7 @@ const ImageGrid = () => {
       }
     );
 
-    // Fade out the "Our Services" text
+    // Fade out the "Our Services" text (only for desktop)
     gsap.to(textRef.current, {
       opacity: 0,
       scrollTrigger: {
@@ -53,51 +46,62 @@ const ImageGrid = () => {
         scrub: 2,
       },
     });
+
+    // Cleanup function to kill ScrollTrigger instances on unmount
+    return () => {
+      ScrollTrigger.getAll().forEach((instance) => instance.kill());
+    };
   }, []);
 
   return (
-    <section id="services" className="w-full overflow-hidden px-15  py-16">
-      <div
-        className="grid grid-cols-3  md:grid-cols-3 gap-2 md:gap-6 "
-        ref={triggerRef}
-      >
-        {images.map((image) => {
-          const isZoom = image.isZoomTarget;
+    <>
+      <div id="services" className="w-full overflow-hidden px-2 md:h-full md:px-15 md:py-16">
+        <div
+          className="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-6"
+          ref={triggerRef}
+        >
+          {images.map((image) => {
+            const isZoom = image.isZoomTarget;
 
-          return (
-            <div
-              key={image.id}
-              className={`relative overflow-x-hidden h-[40vh] md:h-[50vh] lg:h-[60vh] w-full ${
-                isZoom ? "z-[9999] " : "z-10"
-              } `}
-              ref={isZoom ? zoomRef : null}
-            >
-              <div className="absolute inset-0 bg-[#1C4D9B]/40 flex z-40 items-center justify-center">
-              <h3 className="text-white uppercase font-bold text-2xl text-center z-50">{image.title}</h3>
-              </div>
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover z-0 transition-transform duration-500 "
-              />
-              {isZoom && image.title && (
-                <div className="absolute inset-0 bg-[#1C4D9B] flex z-40 items-center justify-center">
-                  <h3
-                    ref={textRef}
-                    className="text-white w-fit text-xs md:text-3xl uppercase font-bold text-center border-b-1 py-3 "
-                  >
+            return (
+              <div
+                key={image.id}
+                className={`relative overflow-x-hidden h-[20vh] md:h-[50vh] lg:h-[60vh] w-full ${
+                  isZoom ? "z-[9999]" : "z-10"
+                }`}
+                ref={isZoom ? zoomRef : null}
+              >
+                <div className="absolute inset-0 bg-[#1C4D9B]/40 flex z-40 items-center justify-center">
+                  <h3 className="text-white uppercase font-bold md:text-2xl text-center z-50">
                     {image.title}
                   </h3>
                 </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover z-0 transition-transform duration-500"
+                />
+                {isZoom && image.title && (
+                  <div className="absolute inset-0 md:bg-[#1C4D9B] hidden md:flex z-40 items-center justify-center">
+                    <h3
+                      ref={textRef}
+                      className="text-white w-fit text-xs md:text-3xl uppercase font-bold text-center border-b-1 py-3"
+                    >
+                      {image.title}
+                    </h3>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
 
-      {/* Scroll padding for effect */}
-      <div className="min-h-screen sm:overflow-hidden" />
-    </section>
+        {/* Only add scroll padding for desktop */}
+        {window.innerWidth >= 1024 && (
+          <div className="min-h-screen sm:overflow-hidden" />
+        )}
+      </div>
+    </>
   );
 };
 

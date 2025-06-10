@@ -9,9 +9,9 @@ const TravelPackages = () => {
 
     if (sectionRef.current) {
       if (width < 768) {
-        sectionRef.current.style.marginTop = "-60vh";
+        sectionRef.current.style.marginTop = "5vh";
       } else if (width < 1024) {
-        sectionRef.current.style.marginTop = "-70vh";
+        sectionRef.current.style.marginTop = "-60vh";
       } else {
         sectionRef.current.style.marginTop = "-80vh";
       }
@@ -24,7 +24,7 @@ const TravelPackages = () => {
       className="bg-[#1C4D9B] relative z-[9999] overflow-hidden"
     >
       <motion.div
-        className="w-11/12 mx-auto text-white pb-32 px-2"
+        className="w-11/12 mx-auto text-white pb-4 md:pb-32 px-2"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 50 }}
@@ -32,7 +32,7 @@ const TravelPackages = () => {
         transition={{ delay: 0.2, duration: 0.3 }}
       >
         <h3 className="w-fit mx-auto mb-16 text-white text-4xl uppercase font-bold text-center px-6 border-b-2 py-3">
-          More Adventures
+          More Services
         </h3>
         <h2
           className="w-full sm:w-11/11 md:w-4/5 lg:w-3/5 xl:w-1/2 mx-auto text-white text-base sm:text-lg md:text-xl font-normal mb-20 text-center"
@@ -60,7 +60,6 @@ const TravelPackages = () => {
                 alt={pkg.title}
                 className="w-full h-[50vh] object-cover"
               />
-              {/* <div className="absolute inset-0 left-0 top-0 right-0 bg-black/40 group-hover:opacity-0 transition-all duration-100" /> */}
             </div>
           ))}
         </div>
@@ -76,9 +75,9 @@ const travelPackages = [
     id: 1,
     category:
       "Upon your arrival at the airport, we will be there to greet you and assist you in reaching your hotel, ensuring a smooth transition into a new country.",
-    title: "Airport Pickup & Transfers",
+    title: "Guide & Porter Services",
     image:
-      "https://nepalrecreation.com/wp-content/uploads/2024/04/Highlights-of-Kathmandu-Airport-to-Thamel-Pickup-in-a-Private-Vehicle.jpg",
+      "https://www.himalayanabode.com/wp-content/uploads/2024/02/Hire-Guide-and-Porter-in-Nepal.jpg",
   },
   {
     id: 2,
@@ -99,7 +98,7 @@ const travelPackages = [
   {
     id: 5,
     category:
-      "Everest DMC can make arrangements for additional activities such as rafting, bungee jumping, and more to ensure you have a memorable experience.",
+      "While Everest is our crown jewel, we offer much more. Contact us for custom itineraries and tailored travel experiences designed just for you.",
     title: "Custom Trips",
     image: "https://cms.discoveryworldtrekking.com/media/4796/everesst.webp",
   },

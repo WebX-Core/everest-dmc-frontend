@@ -27,7 +27,7 @@ const images = [
     id: 5,
     src: "https://assets-cdn.kathmandupost.com/uploads/source/news/2021/third-party/thumb2-1619021995.jpg",
     alt: "Image 5",
-    title: "More Adventures",
+    title: "More Services",
     isZoomTarget: true,
   },
   {

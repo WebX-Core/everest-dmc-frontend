@@ -11,6 +11,7 @@ import TravelPackages from "./Components/our-services/Service";
 import Loader from "./Components/preloader/Preloader";
 import { AnimatePresence, motion } from "framer-motion";
 import ImageGridDivider from "./Components/divider/Divider";
+import WhatsAppChat from "./Components/WhatsAppChat/WhatsAppChat";
 
 function App() {
   const [loading, setLoading] = useState(
@@ -51,6 +52,7 @@ function App() {
           className="min-h-screen font-sans"
         >
           <Navbar />
+          <WhatsAppChat/>
           <Banner />
           <About />
           <WeOffer />
