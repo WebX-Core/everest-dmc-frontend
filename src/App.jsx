@@ -38,7 +38,7 @@ function App() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.7 }}
-          className="min-h-screen flex justify-center items-center bg-[#1C4D9B]"
+          className="min-h-screen flex justify-center items-center bg-white"
         >
           <Loader />
         </motion.div>
