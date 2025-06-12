@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Send, Phone, ChevronDown } from "lucide-react";
+import emailjs from "emailjs-com";
 
 const countries = [
   { code: "AF", name: "Afghanistan", dialCode: "+93" },
@@ -260,6 +261,7 @@ const AwwwardsStyleContact = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.1 });
+  const [emailError, setEmailError] = useState("");
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -270,23 +272,58 @@ const AwwwardsStyleContact = () => {
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
+
+    if (!validateEmail(formData.email)) {
+      setEmailError("Please enter a valid email");
       setIsSubmitting(false);
-      setIsSuccess(true);
-      setFormData({
-        company: "",
-        name: "",
-        email: "",
-        phone: "",
-        country: "",
-        message: "",
-      });
-      setTimeout(() => setIsSuccess(false), 4000);
-    }, 1500);
+      return;
+    }
+
+    const templateParams = {
+      company: formData.company,
+      name: formData.name,
+      email: formData.email,
+      phone: `${selectedCountry.dialCode} ${formData.phone}`,
+      country: selectedCountry.name,
+      message: formData.message,
+    };
+
+    emailjs
+      .send(
+        "service_jukp6kl", // Replace with your actual Service ID
+        "template_1hf946v", // Replace with your actual Template ID
+        templateParams,
+        "4G4rFJrdYccDAMDu1" // Replace with your actual Public Key
+      )
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+          setIsSubmitting(false);
+          setIsSuccess(true);
+          setFormData({
+            company: "",
+            name: "",
+            email: "",
+            phone: "",
+            country: "",
+            message: "",
+          });
+          setTimeout(() => setIsSuccess(false), 4000);
+        },
+        (error) => {
+          console.error("FAILED...", error);
+          setIsSubmitting(false);
+          alert("Something went wrong. Please try again later.");
+        }
+      );
+  };
+
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
   };
 
   const handlePhoneChange = (e) => {
@@ -513,13 +550,22 @@ const AwwwardsStyleContact = () => {
                       name="email"
                       type="email"
                       value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setFormData({ ...formData, email: val });
+                        setEmailError(
+                          validateEmail(val) ? "" : "Invalid email format"
+                        );
+                      }}
                       onFocus={() => setActiveField("email")}
                       onBlur={() => setActiveField(null)}
-                      className="w-full bg-transparent border-b border-white/20 pt-6 pb-2 px-4 focus:border-[#1C4D9B] focus:outline-none rounded-2xl"
+                      className="w-full bg-transparent border-b border-white/20 pt-6 pb-2 px-4 focus:border-[#1C4D9B] focus:outline-none rounded-2xl relative"
                     />
+                    {emailError && (
+                      <p className="text-red-500 text-sm mt- pl-1  absolute -bottom-6 left-1">
+                        {emailError}
+                      </p>
+                    )}
                   </div>
 
                   {/* Message */}
