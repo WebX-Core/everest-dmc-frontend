@@ -1,7 +1,7 @@
 const images = [
   {
     id: 1,
-    src: "https://cdn.britannica.com/17/83817-050-67C814CD/Mount-Everest.jpg",
+    src: "/services/everest-min.jpg",
     alt: "Image 1",
     title: "Everest Base Camp Trek",
   },
