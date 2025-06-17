@@ -74,7 +74,7 @@ const travelPackages = [
   {
     id: 1,
     category:
-      "Upon your arrival at the airport, we will be there to greet you and assist you in reaching your hotel, ensuring a smooth transition into a new country.",
+      "We Provide Professional guide and porter services for safe, enriching Himalayan treks—experience local expertise, personalized support, and unforgettable mountain adventures with us.",
     title: "Guide & Porter Services",
     image:
       "https://www.himalayanabode.com/wp-content/uploads/2024/02/Hire-Guide-and-Porter-in-Nepal.jpg",
@@ -82,7 +82,7 @@ const travelPackages = [
   {
     id: 2,
     category:
-      "Everest DMC will manage your lodging in Kathmandu and at your destination, tailored to suit your budget and requirements.",
+      "Everest DMC arranges your lodging in Kathmandu and trekking destinations, customized to fit your budget and preferences for a comfortable and hassle-free stay.",
     title: "Accommodation Bookings",
     image:
       "https://business.booking.com/storage/assets/media/29/5-factors-that-really-matter-w_f3cb6d159be0a77f2ca96f19c36b5bec4a.webp",
@@ -90,7 +90,7 @@ const travelPackages = [
   {
     id: 3,
     category:
-      "We offer rental cars to ensure your travels are convenient and efficient, without any time wasted on public transportation.",
+      "We provide rental cars for convenient and efficient travel, saving you time and eliminating the hassle of relying on public transportation during your trip",
     title: "Vehicle Rental",
     image: "https://www.pacecarrental.co.za/media/2022/11/Info-Section-3.jpg",
   },
@@ -98,7 +98,7 @@ const travelPackages = [
   {
     id: 5,
     category:
-      "While Everest is our crown jewel, we offer much more. Contact us for custom itineraries and tailored travel experiences designed just for you.",
+      "Everest is our highlight, but there's much more like Annapurna, Manaslu & more. Contact us for custom itineraries and personalized travel experiences tailored perfectly to your interests and needs.",
     title: "Custom Trips",
     image: "https://cms.discoveryworldtrekking.com/media/4796/everesst.webp",
   },
