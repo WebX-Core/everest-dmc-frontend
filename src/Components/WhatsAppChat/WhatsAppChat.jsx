@@ -5,7 +5,7 @@ const WhatsAppChat = () => {
 
   const handleRedirect = () => {
     window.open(
-      "https://wa.me/9801086542?text=Hello%20I%20want%20to%20know%20more%20about%20your%20services",
+      "https://wa.me/9779801086542?text=Hello%20I%20want%20to%20know%20more%20about%20your%20services",
       "_blank"
     ); // Replace with your number
   };
