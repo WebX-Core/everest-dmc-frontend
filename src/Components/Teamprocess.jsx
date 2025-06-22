@@ -79,14 +79,17 @@ const OurProcess = () => {
           </div>
 
           {/* Right Column - Sticky Rotating Image */}
-          <div className="relative w-full lg:w-auto hidden lg:flex flex-1">
+          <div className="relative w-full lg:w-auto lg:flex flex-1">
             <div className="sticky top-0 h-screen flex items-center justify-center w-full">
-              <div className="relative w-fit h-[50vh] md:h-[40rem] lg:h-[70vh]">
-                <img
-                  src="https://storage.googleapis.com/support-forums-api/attachment/thread-149091783-2424697016811330306.png"
-                  alt="google map"
-                  className="h-full object-contain rounded-2xl"
-                ></img>
+              <div className="relative w-fit h-[90vh] md:h-[40rem] lg:h-[70vh] rounded-2xl overflow-hidden shadow-lg border-3 border-blue-800">
+                <video
+                  src="/services/dmc-v.mp4" // Replace with actual path
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="h-full w-full object-cover"
+                />
               </div>
             </div>
           </div>

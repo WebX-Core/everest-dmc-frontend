@@ -58,7 +58,7 @@ const TravelPackages = () => {
               <img
                 src={pkg.image}
                 alt={pkg.title}
-                className="w-full h-[50vh] object-cover"
+                className="w-full h-[50vh] object-cover rounded-xl"
               />
             </div>
           ))}
@@ -92,7 +92,7 @@ const travelPackages = [
     category:
       "We provide rental cars for convenient and efficient travel, saving you time and eliminating the hassle of relying on public transportation during your trip",
     title: "Vehicle Rental",
-    image: "https://www.pacecarrental.co.za/media/2022/11/Info-Section-3.jpg",
+    image: "/services/vehicle.png",
   },
 
   {
