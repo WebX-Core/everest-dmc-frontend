@@ -7,10 +7,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import WhatsAppChat from "./Components/WhatsAppChat/WhatsAppChat";
 import Home from "./pages/Home";
 import About from "./pages/aboutUs";
-import Services from "./pages/package";
 import Blog from "./pages/blog";
 import BlogDetail from "./pages/blog-detail";
+import PackagesPage from "./pages/package";
+import PackageDetails from "./pages/package-details";
 import ContactUs from "./pages/contact-us";
+import ScrollToTop from "./Components/ScrollToTop";
 
 function App() {
   const [loading, setLoading] = useState(
@@ -52,12 +54,15 @@ function App() {
         >
           <Navbar />
           <WhatsAppChat />
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
+            <Route path="/services" element={<PackagesPage />} />
             <Route path="/blogs" element={<Blog />} />
             <Route path="/blogs/:slug" element={<BlogDetail />} />
+            <Route path="/packages" element={<PackagesPage />} />
+            <Route path="/packages/:slug" element={<PackageDetails />} />
             <Route path="/contact-us" element={<ContactUs />} />
           </Routes>
           <Footer />
