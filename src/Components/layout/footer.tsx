@@ -1,9 +1,7 @@
-import React from "react";
-import logo from "../assets/Logo-white.png";
+import logo from "@/assets/Logo-white.png";
 import {
   FaFacebookF,
   FaInstagram,
-  FaWhatsapp,
   FaLinkedinIn,
   FaTelegramPlane,
 } from "react-icons/fa";

@@ -1,4 +1,3 @@
-import React from "react";
 import loader from "./dmc.gif";
 
 const Loader = () => {

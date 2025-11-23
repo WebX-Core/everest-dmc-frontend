@@ -1,10 +1,7 @@
-import React, { lazy } from "react";
-// import { Globe } from "./ui/globe";
-import process from "../data/OurProcessData";
-import { Loader } from "lucide-react";
-// import { GlobeDemo } from "./globe-container";
+import { lazy } from "react";
+import process from "../../data/OurProcessData";
 
-const GlobeDemo = lazy(() => import("./globe-container"));
+const GlobeDemo = lazy(() => import("../globe-container"));
 
 const OurProcess = () => {
   return (

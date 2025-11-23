@@ -4,7 +4,6 @@ import ThreeGlobe from "three-globe";
 import { useThree, Canvas, extend } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import countries from "@/data/globe.json";
-import React from 'react'
 
 extend({ ThreeGlobe: ThreeGlobe });
 
@@ -12,11 +11,44 @@ const RING_PROPAGATION_SPEED = 3;
 const aspect = 1.2;
 const cameraZ = 300;
 
-// let numbersOfRings = [0];
+interface GlobeConfig {
+  pointSize?: number;
+  atmosphereColor?: string;
+  showAtmosphere?: boolean;
+  atmosphereAltitude?: number;
+  polygonColor?: string;
+  globeColor?: string;
+  emissive?: string;
+  emissiveIntensity?: number;
+  shininess?: number;
+  arcTime?: number;
+  arcLength?: number;
+  rings?: number;
+  maxRings?: number;
+  ambientLight?: string;
+  directionalLeftLight?: string;
+  directionalTopLight?: string;
+  pointLight?: string;
+}
 
-export default function Globe({ globeConfig, data }) {
-  const globeRef = useRef(null);
-  const groupRef = useRef();
+interface ArcData {
+  order: number;
+  startLat: number;
+  startLng: number;
+  endLat: number;
+  endLng: number;
+  arcAlt: number;
+  color: string;
+}
+
+interface GlobeProps {
+  globeConfig: GlobeConfig;
+  data: ArcData[];
+}
+
+export default function Globe({ globeConfig, data }: GlobeProps) {
+  const globeRef = useRef<any>(null);
+  const groupRef = useRef<any>(null);
   const [isInitialized, setIsInitialized] = useState(false);
 
   const defaultProps = {
@@ -49,7 +81,7 @@ export default function Globe({ globeConfig, data }) {
   useEffect(() => {
     if (!globeRef.current || !isInitialized) return;
 
-    const globeMaterial = globeRef.current.globeMaterial();
+    const globeMaterial = globeRef.current.globeMaterial() as any;
     globeMaterial.color = new Color(globeConfig.globeColor);
     globeMaterial.emissive = new Color(globeConfig.emissive);
     globeMaterial.emissiveIntensity = globeConfig.emissiveIntensity || 0.1;
@@ -89,8 +121,8 @@ export default function Globe({ globeConfig, data }) {
 
     // remove duplicates for same lat and lng
     const filteredPoints = points.filter(
-      (v, i, a) =>
-        a.findIndex((v2) => ["lat", "lng"].every((k) => v2[k] === v[k])) === i
+      (v: any, i, a) =>
+        a.findIndex((v2: any) => ["lat", "lng"].every((k) => v2[k] === v[k])) === i
     );
 
     globeRef.current
@@ -104,21 +136,21 @@ export default function Globe({ globeConfig, data }) {
 
     globeRef.current
       .arcsData(data)
-      .arcStartLat((d) => d.startLat * 1)
-      .arcStartLng((d) => d.startLng * 1)
-      .arcEndLat((d) => d.endLat * 1)
-      .arcEndLng((d) => d.endLng * 1)
-      .arcColor((e) => e.color)
-      .arcAltitude((e) => e.arcAlt * 1)
+      .arcStartLat((d: any) => d.startLat * 1)
+      .arcStartLng((d: any) => d.startLng * 1)
+      .arcEndLat((d: any) => d.endLat * 1)
+      .arcEndLng((d: any) => d.endLng * 1)
+      .arcColor((e: any) => e.color)
+      .arcAltitude((e: any) => e.arcAlt * 1)
       .arcStroke(() => [0.32, 0.28, 0.3][Math.round(Math.random() * 2)])
       .arcDashLength(defaultProps.arcLength)
-      .arcDashInitialGap((e) => e.order * 1)
+      .arcDashInitialGap((e: any) => e.order * 1)
       .arcDashGap(15)
       .arcDashAnimateTime(() => defaultProps.arcTime);
 
     globeRef.current
       .pointsData(filteredPoints)
-      .pointColor((e) => e.color)
+      .pointColor((e: any) => e.color)
       .pointsMerge(true)
       .pointAltitude(0.0)
       .pointRadius(2);
@@ -159,7 +191,7 @@ export default function Globe({ globeConfig, data }) {
       );
 
       const ringsData = data
-        .filter((d, i) => newNumbersOfRings.includes(i))
+        .filter((_d, i) => newNumbersOfRings.includes(i))
         .map((d) => ({
           lat: d.startLat,
           lng: d.startLng,
@@ -189,7 +221,7 @@ export function WebGLRendererConfig() {
   return null;
 }
 
-export function World(props) {
+export function World(props: GlobeProps) {
   const { globeConfig } = props;
   const scene = new Scene();
   scene.fog = new Fog(0xffffff, 400, 2000);
@@ -225,9 +257,9 @@ export function World(props) {
   );
 }
 
-export function hexToRgb(hex) {
+export function hexToRgb(hex: string) {
   var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-  hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+  hex = hex.replace(shorthandRegex, function (_m, r, g, b) {
     return r + r + g + g + b + b;
   });
 
@@ -241,7 +273,7 @@ export function hexToRgb(hex) {
     : null;
 }
 
-export function genRandomNumbers(min, max, count) {
+export function genRandomNumbers(min: number, max: number, count: number) {
   const arr = [];
   while (arr.length < count) {
     const r = Math.floor(Math.random() * (max - min)) + min;

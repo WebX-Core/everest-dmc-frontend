@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
-import Navbar from "./Components/Navbar";
-import Banner from "./Components/Banner";
-import About from "./Components/About";
-import WeOffer from "./Components/Weoffer";
-import TeamProcess from "./Components/Teamprocess";
-// import TestimonialSlider from "./Components/Testomonial";
-import ContactForm from "./Components/Contact";
-import Footer from "./Components/footer";
-import TravelPackages from "./Components/our-services/Service";
+import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./Components/layout/navbar";
+import Footer from "./Components/layout/footer";
 import Loader from "./Components/preloader/Preloader";
 import { AnimatePresence, motion } from "framer-motion";
-import ImageGridDivider from "./Components/divider/Divider";
 import WhatsAppChat from "./Components/WhatsAppChat/WhatsAppChat";
+import Home from "./pages/Home";
+import About from "./pages/aboutUs";
+import Services from "./pages/package";
+import Blog from "./pages/blog";
+import BlogDetail from "./pages/blog-detail";
+import ContactUs from "./pages/contact-us";
 
 function App() {
   const [loading, setLoading] = useState(
@@ -52,15 +51,15 @@ function App() {
           className="min-h-screen font-sans"
         >
           <Navbar />
-          <WhatsAppChat/>
-          <Banner />
-          <About />
-          <WeOffer />
-          <TravelPackages />
-          <TeamProcess />
-          <ImageGridDivider image="https://cdn.pixabay.com/photo/2018/04/22/18/38/mountain-3341919_1280.jpg" />
-          {/* <TestimonialSlider /> */}
-          <ContactForm />
+          <WhatsAppChat />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/blogs" element={<Blog />} />
+            <Route path="/blogs/:slug" element={<BlogDetail />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+          </Routes>
           <Footer />
         </motion.div>
       )}

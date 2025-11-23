@@ -1,4 +1,12 @@
-const images = [
+export interface ImageData {
+  id: number;
+  src: string;
+  alt: string;
+  title: string;
+  isZoomTarget?: boolean;
+}
+
+const images: ImageData[] = [
   {
     id: 1,
     src: "/services/everest-min.jpg",

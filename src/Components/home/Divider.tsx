@@ -1,6 +1,8 @@
-import React from "react";
+interface ImageGridDividerProps {
+  image: string;
+}
 
-const ImageGridDivider = ({ image }) => {
+const ImageGridDivider = ({ image }: ImageGridDividerProps) => {
   return (
     <div
       className="relative h-screen w-full bg-fixed bg-center bg-cover bg-no-repeat mt-20"

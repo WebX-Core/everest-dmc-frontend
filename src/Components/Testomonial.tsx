@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const testimonials = [
@@ -44,7 +44,7 @@ const testimonials = [
 
 const TestimonialSlider = () => {
   const [current, setCurrent] = useState(0);
-  const intervalRef = useRef(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Auto-slide effect
   useEffect(() => {
@@ -52,7 +52,11 @@ const TestimonialSlider = () => {
       setCurrent((prev) => (prev + 1) % testimonials.length);
     }, 5000); // 5 seconds interval
 
-    return () => clearInterval(intervalRef.current);
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
   }, []);
 
   return (

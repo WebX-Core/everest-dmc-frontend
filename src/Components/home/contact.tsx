@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { Send, Phone, ChevronDown } from "lucide-react";
+import { Send, ChevronDown } from "lucide-react";
 import emailjs from "emailjs-com";
 
 const countries = [
@@ -245,7 +245,11 @@ const countries = [
   { code: "ZW", name: "Zimbabwe", dialCode: "+263" },
 ];
 
-const AwwwardsStyleContact = () => {
+interface ContactFormProps {
+  hideTitle?: boolean;
+}
+
+const AwwwardsStyleContact = ({ hideTitle = false }: ContactFormProps) => {
   const [formData, setFormData] = useState({
     company: "",
     name: "",
@@ -254,7 +258,7 @@ const AwwwardsStyleContact = () => {
     country: "",
     message: "",
   });
-  const [activeField, setActiveField] = useState(null);
+  const [activeField, setActiveField] = useState<string | null>(null);
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
   const [showCountryDropdown, setShowCountryDropdown] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -264,15 +268,15 @@ const AwwwardsStyleContact = () => {
   const [emailError, setEmailError] = useState("");
 
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest(".country-selector")) {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (!(e.target as Element).closest(".country-selector")) {
         setShowCountryDropdown(false);
       }
     };
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -321,16 +325,16 @@ const AwwwardsStyleContact = () => {
       );
   };
 
-  const validateEmail = (email) => {
+  const validateEmail = (email: string) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
   };
 
-  const handlePhoneChange = (e) => {
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, phone: e.target.value });
   };
 
-  const handleCountrySelect = (country) => {
+  const handleCountrySelect = (country: typeof countries[0]) => {
     setSelectedCountry(country);
     setFormData({ ...formData, country: country.name });
     setShowCountryDropdown(false);
@@ -369,10 +373,9 @@ const AwwwardsStyleContact = () => {
         variants={containerVariants}
       >
         <motion.div className="mb-16 text-center" variants={itemVariants}>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
-            <span className="block">Send Us Your</span>
-            <span className="text-[#1C4D9B]">Enquiry Below</span>
-          </h2>
+          {/* <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+            <span className="block">Send Us Your Enquiry Below</span>
+          </h2> */}
           <p className="text-base sm:text-lg text-gray-400">
             Experience the unforgettable moment with Everest DMC in Nepal.
           </p>
