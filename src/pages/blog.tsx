@@ -3,6 +3,7 @@ import { Calendar, User, ArrowRight, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { blogApi } from "../services/blog";
+import Preloader from "../Components/common/Preloader";
 
 const Blog = () => {
   const { data, isLoading, error } = useQuery({

@@ -150,7 +150,7 @@ const Navbar = () => {
         <div className="hidden md:block">
           <Link
             to="/contact-us"
-            className="group relative inline-block text-sm font-medium text-white focus:ring-3 focus:outline-none"
+            className="group relative inline-block text-sm font-medium text-white"
           >
             <span className="absolute inset-0 border border-[#1C4D9B]"></span>
             <span className="block px-6 md:px-8 lg:px-12 py-2 md:py-2.5 lg:py-3 text-sm md:text-sm lg:text-base transition-transform group-hover:-translate-x-1 group-hover:-translate-y-1 bg-[#1C4D9B]">

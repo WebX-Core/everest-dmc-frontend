@@ -1,35 +1,64 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import images from "../data/WeOfferImages";
+import { useState, useEffect } from "react";
+import { packageApi, Package } from "../services/package";
 
 const ImageGrid = () => {
   const navigate = useNavigate();
+  const [packages, setPackages] = useState<Package[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPackages = async () => {
+      try {
+        const response = await packageApi.getAllPackages();
+        setPackages(response.data);
+      } catch (error) {
+        console.error("Error fetching packages:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPackages();
+  }, []);
 
   return (
     <>
-      <div id="services" className="w-full px-2 md:px-15 py-8 md:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-          {images.map((image) => {
-            return (
-              <div
-                key={image.id}
-                className="w-full cursor-pointer group"
-                onClick={() => navigate(`/packages/${image.slug}`)}
-              >
-                <div className="relative overflow-hidden h-[30vh] md:h-[40vh] lg:h-[50vh] w-full rounded-lg">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
+      <div id="services" className="w-full px-2 md:px-20 py-8 md:py-16">
+        {loading ? (
+          <div className="flex justify-center items-center min-h-[50vh]">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[#1C4D9B]"></div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            {packages.map((pkg) => {
+              return (
+                <div
+                  key={pkg._id}
+                  className="w-full cursor-pointer group"
+                  onClick={() => navigate(`/packages/${pkg.slug}`)}
+                >
+                  <div className="relative overflow-hidden h-[40vh] md:h-[50vh] lg:h-[60vh] w-full rounded-none">
+                    <img
+                      src={pkg.coverImage}
+                      alt={pkg.name}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    {/* Overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                    {/* Title in center */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <h3 className="text-white uppercase font-bold text-xl md:text-2xl lg:text-3xl text-center px-4">
+                        {pkg.name}
+                      </h3>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-[#1C4D9B] uppercase font-bold text-sm md:text-xl text-left mt-3 px-2 group-hover:text-blue-700 transition-colors">
-                  {image.title}
-                </h3>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </>
   );
@@ -76,7 +105,7 @@ const TravelPackages = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="bg-[#1C4D9B] relative overflow-hidden py-16">
+    <section id="more-services-section" className="bg-[#1C4D9B] relative overflow-hidden py-16">
 
       <div className="w-11/12 mx-auto text-white pb-4 md:pb-32 px-2">
         <h3 className="w-fit mx-auto mb-16 text-white text-4xl uppercase font-medium text-center px-6 border-b-2 py-3">
