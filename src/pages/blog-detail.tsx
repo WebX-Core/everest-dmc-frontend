@@ -1,13 +1,40 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Calendar, User, Clock, ArrowLeft, Share2, ArrowRight } from "lucide-react";
-import { blogPosts } from "../data/blogData";
+import { Calendar, User, Clock, ArrowLeft, Share2 } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { blogApi } from "../services/blog";
 
 const BlogDetail = () => {
   const { slug } = useParams<{ slug: string }>();
-  const post = blogPosts.find((p) => p.slug === slug);
 
-  if (!post) {
+  const { data: post, isLoading, error } = useQuery({
+    queryKey: ["blog", slug],
+    queryFn: () => blogApi.getBlogBySlug(slug!),
+    enabled: !!slug,
+  });
+
+  // Helper function to format date
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#1C4D9B]"></div>
+          <p className="mt-4 text-gray-600">Loading blog post...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !post) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -24,17 +51,16 @@ const BlogDetail = () => {
     );
   }
 
-  const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
-
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Image */}
-      <div className="relative h-[50vh] overflow-hidden">
+      <div className="relative h-[60vh] overflow-hidden">
         <img
-          src={post.image}
+          src={post.banner}
           alt={post.title}
           className="w-full h-full object-cover"
         />
+         <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-700/50 to-blue-500/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8">
           <div className="max-w-4xl mx-auto">
@@ -45,9 +71,7 @@ const BlogDetail = () => {
               <ArrowLeft className="w-4 h-4" />
               Back to Blogs
             </Link>
-            {/* <span className="inline-block bg-[#1C4D9B] text-white px-4 py-1 rounded-full text-sm font-medium mb-4">
-              {post.category}
-            </span> */}
+           
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
               {post.title}
             </h1>
@@ -58,11 +82,11 @@ const BlogDetail = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4" />
-                <span>{post.date}</span>
+                <span>{formatDate(post.createdAt)}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4" />
-                <span>{post.readTime}</span>
+                <span>{post.estimatedReadTime} min read</span>
               </div>
             </div>
           </div>
@@ -70,7 +94,7 @@ const BlogDetail = () => {
       </div>
 
       {/* Content */}
-      <article className="max-w-4xl mx-auto py-12">
+      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -85,13 +109,10 @@ const BlogDetail = () => {
           </div>
 
           {/* Article Content */}
-          <div className="prose prose-lg max-w-none">
-            {post.content.map((paragraph, index) => (
-              <p key={index} className="text-gray-700 mb-6 leading-relaxed text-lg">
-                {paragraph}
-              </p>
-            ))}
-          </div>
+          <div 
+            className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-[#1C4D9B] prose-strong:text-gray-900"
+            dangerouslySetInnerHTML={{ __html: post.description }}
+          />
 
           {/* Author Bio */}
           <div className="mt-12 p-6 bg-blue-50 rounded-xl">
@@ -107,71 +128,6 @@ const BlogDetail = () => {
           </div>
         </motion.div>
       </article>
-
-      {/* Related Posts - Same Card Design as Blog Listing */}
-      <section className="bg-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-8">Related Articles</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {relatedPosts.map((relatedPost, index) => (
-              <motion.article
-                key={relatedPost.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-none overflow-hidden shadow-sm"
-              >
-                {/* Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={relatedPost.image}
-                    alt={relatedPost.title}
-                    className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-[#1C4D9B] text-white px-3 py-1 rounded-full text-sm font-medium">
-                      {relatedPost.category}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <h2 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 hover:text-[#1C4D9B] transition-colors">
-                    {relatedPost.title}
-                  </h2>
-                  <p className="text-gray-600 mb-4 line-clamp-3">
-                    {relatedPost.excerpt}
-                  </p>
-
-                  {/* Meta Info */}
-                  <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                    <div className="flex items-center gap-2">
-                      <User className="w-4 h-4" />
-                      <span>{relatedPost.author}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
-                      <span>{relatedPost.date}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500">{relatedPost.readTime}</span>
-                    <Link
-                      to={`/blogs/${relatedPost.slug}`}
-                      className="flex items-center gap-2 text-[#1C4D9B] font-medium hover:gap-3 transition-all"
-                    >
-                      Read More
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Send, ChevronDown } from "lucide-react";
-import emailjs from "emailjs-com";
+import { contactApi } from "../../services/contact";
 
 const countries = [
   { code: "AF", name: "Afghanistan", dialCode: "+93" },
@@ -256,6 +256,8 @@ const AwwwardsStyleContact = ({ hideTitle = false }: ContactFormProps) => {
     email: "",
     phone: "",
     country: "",
+    budget: "",
+    goal: "",
     message: "",
   });
   const [activeField, setActiveField] = useState<string | null>(null);
@@ -276,7 +278,7 @@ const AwwwardsStyleContact = ({ hideTitle = false }: ContactFormProps) => {
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -286,43 +288,37 @@ const AwwwardsStyleContact = ({ hideTitle = false }: ContactFormProps) => {
       return;
     }
 
-    const templateParams = {
-      company: formData.company,
+    const contactData = {
       name: formData.name,
       email: formData.email,
-      phone: `${selectedCountry.dialCode} ${formData.phone}`,
-      country: selectedCountry.name,
+      goal: formData.goal,
+      number: `${selectedCountry.dialCode} ${formData.phone}`,
+      budget: formData.budget,
+      company: formData.company,
       message: formData.message,
     };
 
-    emailjs
-      .send(
-        "service_jukp6kl", // Replace with your actual Service ID
-        "template_1hf946v", // Replace with your actual Template ID
-        templateParams,
-        "4G4rFJrdYccDAMDu1" // Replace with your actual Public Key
-      )
-      .then(
-        (response) => {
-          console.log("SUCCESS!", response.status, response.text);
-          setIsSubmitting(false);
-          setIsSuccess(true);
-          setFormData({
-            company: "",
-            name: "",
-            email: "",
-            phone: "",
-            country: "",
-            message: "",
-          });
-          setTimeout(() => setIsSuccess(false), 4000);
-        },
-        (error) => {
-          console.error("FAILED...", error);
-          setIsSubmitting(false);
-          alert("Something went wrong. Please try again later.");
-        }
-      );
+    try {
+      const response = await contactApi.submitContactForm(contactData);
+      console.log("SUCCESS!", response);
+      setIsSubmitting(false);
+      setIsSuccess(true);
+      setFormData({
+        company: "",
+        name: "",
+        email: "",
+        phone: "",
+        country: "",
+        budget: "",
+        goal: "",
+        message: "",
+      });
+      setTimeout(() => setIsSuccess(false), 4000);
+    } catch (error) {
+      console.error("FAILED...", error);
+      setIsSubmitting(false);
+      alert("Something went wrong. Please try again later.");
+    }
   };
 
   const validateEmail = (email: string) => {
@@ -536,6 +532,59 @@ const AwwwardsStyleContact = ({ hideTitle = false }: ContactFormProps) => {
                     </div>
                   </div>
 
+                  {/* Budget and Goal */}
+                  <div className="flex flex-col md:flex-row gap-4">
+                    <div className="relative bg-blue-50 rounded-2xl flex-1">
+                      <label
+                        htmlFor="budget"
+                        className={`absolute left-4 transition-all duration-300 ${
+                          activeField === "budget" || formData.budget
+                            ? "top-1 text-xs text-[#1C4D9B]"
+                            : "top-4 text-gray-500"
+                        }`}
+                      >
+                        Budget
+                      </label>
+                      <input
+                        id="budget"
+                        name="budget"
+                        type="text"
+                        value={formData.budget}
+                        onChange={(e) =>
+                          setFormData({ ...formData, budget: e.target.value })
+                        }
+                        onFocus={() => setActiveField("budget")}
+                        onBlur={() => setActiveField(null)}
+                        className="w-full bg-transparent border-b border-white/20 pt-6 pb-2 px-4 focus:border-[#1C4D9B] focus:outline-none rounded-2xl"
+                      />
+                    </div>
+
+                    <div className="relative bg-blue-50 rounded-2xl flex-1">
+                      <label
+                        htmlFor="goal"
+                        className={`absolute left-4 transition-all duration-300 ${
+                          activeField === "goal" || formData.goal
+                            ? "top-1 text-xs text-[#1C4D9B]"
+                            : "top-4 text-gray-500"
+                        }`}
+                      >
+                        Goal
+                      </label>
+                      <input
+                        id="goal"
+                        name="goal"
+                        type="text"
+                        value={formData.goal}
+                        onChange={(e) =>
+                          setFormData({ ...formData, goal: e.target.value })
+                        }
+                        onFocus={() => setActiveField("goal")}
+                        onBlur={() => setActiveField(null)}
+                        className="w-full bg-transparent border-b border-white/20 pt-6 pb-2 px-4 focus:border-[#1C4D9B] focus:outline-none rounded-2xl"
+                      />
+                    </div>
+                  </div>
+
                   {/* Email */}
                   <div className="relative bg-blue-50 rounded-2xl">
                     <label
@@ -603,7 +652,7 @@ const AwwwardsStyleContact = ({ hideTitle = false }: ContactFormProps) => {
                     disabled={isSubmitting}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full sm:w-fit py-4 px-8 bg-[#1C4D9B] text-white rounded-full font-medium flex items-center justify-center gap-2"
+                    className="w-full sm:w-fit py-4 px-8 bg-[#1C4D9B] text-white rounded-full font-medium flex items-center justify-center gap-2 cursor-pointer"
                   >
                     {isSubmitting ? (
                       <>

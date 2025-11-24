@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Navbar from "./Components/layout/navbar";
 import Footer from "./Components/layout/footer";
 import Loader from "./Components/preloader/Preloader";
@@ -13,6 +14,8 @@ import PackagesPage from "./pages/package";
 import PackageDetails from "./pages/package-details";
 import ContactUs from "./pages/contact-us";
 import ScrollToTop from "./Components/ScrollToTop";
+
+const queryClient = new QueryClient();
 
 function App() {
   const [loading, setLoading] = useState(
@@ -31,7 +34,8 @@ function App() {
   }, [loading]);
 
   return (
-    <AnimatePresence mode="wait">
+    <QueryClientProvider client={queryClient}>
+      <AnimatePresence mode="wait">
       {loading ? (
         <motion.div
           key="loader"
@@ -69,6 +73,7 @@ function App() {
         </motion.div>
       )}
     </AnimatePresence>
+    </QueryClientProvider>
   );
 }
 

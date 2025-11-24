@@ -107,7 +107,7 @@ const TravelPackages = () => {
               <img
                 src={pkg.image}
                 alt={pkg.title}
-                className="w-full h-[50vh] object-cover rounded-xl"
+                className="w-full h-[50vh] object-cover rounded-none"
               />
             </div>
           ))}
