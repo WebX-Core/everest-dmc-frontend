@@ -26,13 +26,14 @@ const ImageGrid = () => {
   return (
     <>
       <div id="services" className="w-full px-2 md:px-20 py-8 md:py-16">
+       
         {loading ? (
           <div className="flex justify-center items-center min-h-[50vh]">
             <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[#1C4D9B]"></div>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-            {packages.map((pkg) => {
+            {packages?.map((pkg) => {
               return (
                 <div
                   key={pkg._id}
