@@ -1,30 +1,40 @@
-import { defineConfig, loadEnv } from "vite";
-import tailwindcss from "@tailwindcss/vite";
-import path from "path";
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react-swc'
+import path from "path"
+import tailwindcss from "@tailwindcss/vite"
 
-export default defineConfig(({ mode }) => {
-  // Load env variables
-  const env = loadEnv(mode, process.cwd(), "");
-
-  return {
-    plugins: [tailwindcss()],
-
-    resolve: {
-      alias: {
-        "@": path.resolve(__dirname, "./src"),
-      },
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
     },
-
-    server: {
-      proxy: {
-        "/api": {
-          target: env.VITE_BACKEND_URL, // https://backend.everestdmc.com/api/v1
-          changeOrigin: true,
-          secure: false,
-          // Remove "/api" before sending the request to the backend
-          rewrite: (p) => p.replace(/^\/api/, ""),
+  },
+  server: {
+    host: true,
+    proxy: {
+      '/api': {
+        target: 'https://fly-himalaya-api.webxnepal.com',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, '/api/v1'),
+        configure: (proxy, _options) => {
+          proxy.on('error', (err, _req, _res) => {
+            console.log('proxy error', err);
+          });
+          proxy.on('proxyReq', (proxyReq, req, _res) => {
+            console.log('Sending Request to the Target:', req.method, req.url);
+          });
+          proxy.on('proxyRes', (proxyRes, req, _res) => {
+            console.log('Received Response from the Target:', proxyRes.statusCode, req.url);
+          });
         },
-      },
-    },
-  };
-});
+      }
+    }
+  },
+  // Optional: Define global environment variables
+  define: {
+    'import.meta.env.DEV': JSON.stringify(process.env.NODE_ENV === 'development'),
+  }
+})
