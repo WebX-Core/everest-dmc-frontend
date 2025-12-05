@@ -85,7 +85,7 @@ const travelPackages = [
       "Everest DMC arranges your lodging in Kathmandu and trekking destinations, customized to fit your budget and preferences for a comfortable and hassle-free stay.",
     title: "Accommodation Bookings",
     image:
-      "https://business.booking.com/storage/assets/media/29/5-factors-that-really-matter-w_f3cb6d159be0a77f2ca96f19c36b5bec4a.webp",
+      "https://images.pexels.com/photos/7061073/pexels-photo-7061073.jpeg",
   },
   {
     id: 3,
