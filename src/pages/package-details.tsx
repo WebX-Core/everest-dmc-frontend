@@ -180,7 +180,7 @@ const PackageDetails: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-200/80">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
       {/* Hero Section */}
       <div className="relative h-96 w-full bg-cover bg-center" style={{ backgroundImage: `url('${tour.coverImage}')` }}>
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent" />
@@ -243,7 +243,7 @@ const PackageDetails: React.FC = () => {
           {/* Main Content Area */}
           <div className="lg:w-[75%] space-y-6">
             {/* Trip Details Grid */}
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6">
+            <div className="rounded-lg p-6">
               <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Trip at a Glance</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {tripDetails.map((detail, index) => (
@@ -259,14 +259,14 @@ const PackageDetails: React.FC = () => {
             </div>
 
             {/* Overview Section */}
-            <section id="overview" className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 scroll-mt-20">
+            <section id="overview" className=" rounded-lg p-6 scroll-mt-20">
               <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Overview</h2>
               <div className="prose max-w-none text-gray-600" dangerouslySetInnerHTML={{ __html: tour.overview }} />
             </section>
 
             {/* Attractions Section */}
             {tour.attraction.length > 0 && (
-              <section id="attraction" className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 scroll-mt-20">
+              <section id="attraction" className=" p-6 scroll-mt-20">
                 <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Trip Attractions</h2>
                 <div className="space-y-4">
                   {tour.attraction.map((item: any) => (
@@ -281,14 +281,14 @@ const PackageDetails: React.FC = () => {
 
             {/* Itinerary Section */}
             {tour.itinerary.length > 0 && (
-              <section id="itinerary" className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 scroll-mt-20">
+              <section id="itinerary" className=" rounded-lg p-6 scroll-mt-20">
                 <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Itinerary</h2>
                 <div className="space-y-2">
                   {tour.itinerary.map((item: any, i: number) => (
                     <div key={item._id} className="border border-gray-200 rounded-lg overflow-hidden">
                       <button
                         onClick={() => toggleDayExpansion(i)}
-                        className="w-full flex items-center justify-between p-4 hover:bg-gray-50"
+                        className="w-full flex items-center justify-between p-4 "
                       >
                         <div className="flex items-center gap-3">
                           <span className="bg-[#1C4D9B] text-white px-3 py-1 rounded-full text-sm">
@@ -299,7 +299,7 @@ const PackageDetails: React.FC = () => {
                         <ChevronDown className={`w-5 h-5 transition-transform ${expandedDays.includes(i) ? "rotate-180" : ""}`} />
                       </button>
                       {expandedDays.includes(i) && (
-                        <div className="p-4 bg-gray-50 border-t">
+                        <div className="p-4  border-t">
                           <div className="text-gray-600 text-sm" dangerouslySetInnerHTML={{ __html: item.description }} />
                         </div>
                       )}
@@ -369,7 +369,7 @@ const PackageDetails: React.FC = () => {
 
             {/* Cost Includes */}
             {tour.inclusion.length > 0 && (
-              <section id="includes" className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 scroll-mt-20">
+              <section id="includes" className=" p-6 scroll-mt-20">
                 <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">What's Included</h2>
                 <div className="space-y-3">
                   {tour.inclusion.map((item: any) => (
@@ -389,7 +389,7 @@ const PackageDetails: React.FC = () => {
 
             {/* Cost Excludes */}
             {tour.exclusion.length > 0 && (
-              <section id="excludes" className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 scroll-mt-20">
+              <section id="excludes" className="rounded-lg p-6 scroll-mt-20">
                 <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">What's Not Included</h2>
                 <div className="space-y-3">
                   {tour.exclusion.map((item: any) => (
@@ -410,7 +410,7 @@ const PackageDetails: React.FC = () => {
 
             {/* Gallery Section */}
             {tour.gallery.length > 0 && (
-              <section id="gallery" className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 scroll-mt-20">
+              <section id="gallery" className=" rounded-lg p-6 scroll-mt-20">
                 <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Photo Gallery</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {tour.gallery.map((img: any) => (
@@ -428,11 +428,11 @@ const PackageDetails: React.FC = () => {
 
             {/* Gear Info Section */}
             {tour.gearInfo.length > 0 && (
-              <section id="gear" className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 scroll-mt-20">
+              <section id="gear" className=" rounded-lg p-6 scroll-mt-20">
                 <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Gear Information</h2>
                 <div className="space-y-4">
                   {tour.gearInfo.map((item: any) => (
-                    <div key={item._id} className="p-4 bg-gray-50 rounded-lg">
+                    <div key={item._id} className="p-4  rounded-lg">
                       <h3 className="font-semibold mb-2 flex items-center gap-2">
                         <Backpack className="w-5 h-5 text-[#1C4D9B]" /> {item.title}
                       </h3>
@@ -445,7 +445,7 @@ const PackageDetails: React.FC = () => {
 
             {/* Important Info Section */}
             {(tour.importantNotice.length > 0 || tour.insurance.length > 0 || tour.whyLoveThisTrek.length > 0) && (
-              <section id="info" className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 scroll-mt-20">
+              <section id="info" className=" rounded-lg p-6 scroll-mt-20">
                 <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Important Information</h2>
 
                 {/* Important Notices */}
@@ -456,7 +456,7 @@ const PackageDetails: React.FC = () => {
                     </h3>
                     <div className="space-y-3">
                       {tour.importantNotice.map((item: any) => (
-                        <div key={item._id} className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-lg">
+                        <div key={item._id} className="p-4 border-l-4 border-yellow-400 rounded-r-lg">
                           <p className="font-medium">{item.title}</p>
                           <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: item.description }} />
                         </div>
@@ -473,7 +473,7 @@ const PackageDetails: React.FC = () => {
                     </h3>
                     <div className="space-y-3">
                       {tour.insurance.map((item: any) => (
-                        <div key={item._id} className="p-4 bg-blue-50 rounded-lg">
+                        <div key={item._id} className="p-4  rounded-lg">
                           <p className="font-medium">{item.title}</p>
                           <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: item.description }} />
                         </div>
@@ -490,7 +490,7 @@ const PackageDetails: React.FC = () => {
                     </h3>
                     <div className="space-y-3">
                       {tour.whyLoveThisTrek.map((item: any) => (
-                        <div key={item._id} className="p-4 bg-green-50 rounded-lg">
+                        <div key={item._id} className="p-4  rounded-lg">
                           <p className="font-medium">{item.title}</p>
                           <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: item.description }} />
                         </div>
@@ -503,20 +503,20 @@ const PackageDetails: React.FC = () => {
 
             {/* FAQs Section */}
             {tour.faq.length > 0 && (
-              <section id="faqs" className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 scroll-mt-20">
+              <section id="faqs" className=" rounded-lg p-6 scroll-mt-20">
                 <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Frequently Asked Questions</h2>
                 <div className="space-y-3">
                   {tour.faq.map((item: any, i: number) => (
                     <div key={item._id} className="border border-gray-200 rounded-lg overflow-hidden">
                       <button
                         onClick={() => toggleDayExpansion(100 + i)}
-                        className="w-full flex items-center justify-between p-4 hover:bg-gray-50 text-left"
+                        className="w-full flex items-center justify-between p-4  text-left"
                       >
                         <span className="font-medium">{item.title}</span>
                         <ChevronDown className={`w-5 h-5 transition-transform ${expandedDays.includes(100 + i) ? "rotate-180" : ""}`} />
                       </button>
                       {expandedDays.includes(100 + i) && (
-                        <div className="p-4 bg-gray-50 border-t">
+                        <div className="p-4 border-t">
                           <div className="text-gray-600 text-sm" dangerouslySetInnerHTML={{ __html: item.description }} />
                         </div>
                       )}
@@ -529,7 +529,7 @@ const PackageDetails: React.FC = () => {
 
             {/* Reviews/Testimonials Section */}
             {tour.testimonial.length > 0 && (
-              <section id="reviews" className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 scroll-mt-20">
+              <section id="reviews" className=" rounded-lg p-6 scroll-mt-20">
                 <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Customer Reviews</h2>
                 <div className="space-y-4">
                   {tour.testimonial.map((review: any) => (
