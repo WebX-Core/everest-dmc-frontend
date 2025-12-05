@@ -99,11 +99,11 @@ const Footer = () => {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://webxnep.com"
+            href="https://webxnepal.com"
             className="hover:underline transition-transform hover:scale-105"
           >
             <img
-              src="https://www.webxnep.com/logo/logo.svg"
+              src="https://www.webxnepal.com/logo/logo.svg"
               alt="WebXNep Logo"
               className="w-16 inline-block"
             />

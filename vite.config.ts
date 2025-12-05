@@ -3,38 +3,55 @@ import react from '@vitejs/plugin-react-swc'
 import path from "path"
 import tailwindcss from "@tailwindcss/vite"
 
-// https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command, mode }) => ({
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-    },
+    }
   },
   server: {
     host: true,
+    port: 5173,
+    strictPort: true,
+    cors: true,
+
     proxy: {
-      '/api': {
-        target: 'https://fly-himalaya-api.webxnepal.com',
+      "/api/cache": {
+        target: "https://backend.everestdmc.com",
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/api/, '/api/v1'),
-        configure: (proxy, _options) => {
-          proxy.on('error', (err, _req, _res) => {
-            console.log('proxy error', err);
+        configure: (proxy) => {
+          proxy.on("proxyReq", (proxyReq) => {
+            proxyReq.setHeader("Origin", "https://everest-dmc-lime.vercel.app");
+            proxyReq.setHeader("Referer", "https://everest-dmc-lime.vercel.app/");
           });
-          proxy.on('proxyReq', (proxyReq, req, _res) => {
-            console.log('Sending Request to the Target:', req.method, req.url);
-          });
-          proxy.on('proxyRes', (proxyRes, req, _res) => {
-            console.log('Received Response from the Target:', proxyRes.statusCode, req.url);
+
+          proxy.on("error", (err) => console.log("proxy error", err));
+          proxy.on("proxyRes", (proxyRes, req) => {
+            console.log("Received:", proxyRes.statusCode, req.url);
           });
         },
-      }
-    }
-  },
-  // Optional: Define global environment variables
-  define: {
-    'import.meta.env.DEV': JSON.stringify(process.env.NODE_ENV === 'development'),
-  }
-})
+      },
+      "/api": {
+        target: "https://backend.everestdmc.com/api/v1",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+        configure: (proxy) => {
+          proxy.on("proxyReq", (proxyReq) => {
+            proxyReq.setHeader("Origin", "https://everest-dmc-lime.vercel.app");
+            proxyReq.setHeader("Referer", "https://everest-dmc-lime.vercel.app/");
+          });
+
+          proxy.on("error", (err) => console.log("proxy error", err));
+          proxy.on("proxyRes", (proxyRes, req) => {
+            console.log("Received:", proxyRes.statusCode, req.url);
+          });
+        },
+      },
+    }
+
+  }
+
+}))

@@ -32,7 +32,7 @@ const ImageGrid = () => {
   }, []);
 
   useEffect(() => {
-    // Wait for data to load before initializing animations
+  
     if (loading) return;
 
     // Check if the screen width is larger than tablet size (1024px)
