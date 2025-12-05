@@ -261,7 +261,7 @@ const PackageDetails: React.FC = () => {
             {/* Overview Section */}
             <section id="overview" className=" rounded-lg p-6 scroll-mt-20">
               <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Overview</h2>
-              <div className="prose max-w-none text-gray-600" dangerouslySetInnerHTML={{ __html: tour.overview }} />
+              <div className="prose max-w-none text-gray-600 text-md" dangerouslySetInnerHTML={{ __html: tour.overview }} />
             </section>
 
             {/* Attractions Section */}
@@ -272,7 +272,7 @@ const PackageDetails: React.FC = () => {
                   {tour.attraction.map((item: any) => (
                     <div key={item._id} className="border-l-4 border-[#1C4D9B] pl-4">
                       {/* <h3 className="font-semibold text-lg mb-2">{item.title}</h3> */}
-                      <div className="text-gray-600 text-sm" dangerouslySetInnerHTML={{ __html: item.description }} />
+                      <div className="text-gray-600 text-md" dangerouslySetInnerHTML={{ __html: item.description }} />
                     </div>
                   ))}
                 </div>
@@ -595,7 +595,7 @@ const PackageDetails: React.FC = () => {
                 <div className="mt-6">
                   <Link
                     to={`/contact-us?package=${encodeURIComponent(tour.name)}`}
-                    className="block w-full bg-[#1C4D9B] hover:bg-[#153d7a] text-white text-center font-semibold py-3.5 px-6 rounded-lg transition-colors shadow-md hover:shadow-lg"
+                    className="block w-full bg-[#1C4D9B] hover:bg-[#153d7a] text-white text-center font-semibold py-3.5 px-6 rounded-none transition-colors shadow-md hover:shadow-lg"
                   >
                     Inquire Now
                   </Link>

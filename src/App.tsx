@@ -21,17 +21,32 @@ function App() {
   const [loading, setLoading] = useState(
     sessionStorage.getItem("hasLoaded") ? false : true
   );
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [minTimePassed, setMinTimePassed] = useState(false);
 
+  // Preload video while showing loader
+  useEffect(() => {
+    const video = document.createElement("video");
+    video.src = "/bg-video.mp4";
+    video.preload = "auto";
+    video.oncanplaythrough = () => setVideoLoaded(true);
+    video.load();
+  }, []);
+
+  // Minimum loader time
   useEffect(() => {
     if (!loading) return;
-
-    const timer = setTimeout(() => {
-      setLoading(false);
-      sessionStorage.setItem("hasLoaded", "true");
-    }, 2000);
-
+    const timer = setTimeout(() => setMinTimePassed(true), 2000);
     return () => clearTimeout(timer);
   }, [loading]);
+
+  // Hide loader when both conditions are met
+  useEffect(() => {
+    if (minTimePassed && videoLoaded && loading) {
+      setLoading(false);
+      sessionStorage.setItem("hasLoaded", "true");
+    }
+  }, [minTimePassed, videoLoaded, loading]);
 
   return (
     <QueryClientProvider client={queryClient}>

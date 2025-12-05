@@ -28,8 +28,17 @@ const ImageGrid = () => {
       <div id="services" className="w-full px-2 md:px-20 py-8 md:py-16">
        
         {loading ? (
-          <div className="flex justify-center items-center min-h-[50vh]">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[#1C4D9B]"></div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            {[...Array(6)].map((_, index) => (
+              <div key={index} className="w-full">
+                <div className="relative overflow-hidden h-[40vh] md:h-[50vh] lg:h-[60vh] w-full rounded-none bg-gray-200 animate-pulse">
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-300/70 via-gray-300/30 to-transparent"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="h-8 w-48 bg-gray-300 rounded"></div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
@@ -125,8 +134,7 @@ const TravelPackages = () => {
           {travelPackages.map((pkg) => (
             <div
               key={pkg.id}
-              className="bg-[#fff] overflow-hidden relative group p-4 flex flex-col gap-2 justify-between cursor-pointer transition-transform duration-300 hover:scale-105"
-              onClick={() => navigate(`/packages/${pkg.slug}`)}
+              className="bg-[#fff] overflow-hidden relative group p-4 flex flex-col gap-2 justify-between transition-transform duration-300 "
             >
               <div className="bottom-0 left-0">
                 <h3 className="text-xl text-[#1C4D9B] font-semibold tracking-widest uppercase group-hover:text-blue-700 transition-colors">
