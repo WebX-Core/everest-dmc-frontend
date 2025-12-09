@@ -27,10 +27,8 @@ export default defineConfig(({ command, mode }) => ({
             proxyReq.setHeader("Referer", "https://everest-dmc-lime.vercel.app/");
           });
 
-          proxy.on("error", (err) => console.log("proxy error", err));
-          proxy.on("proxyRes", (proxyRes, req) => {
-            console.log("Received:", proxyRes.statusCode, req.url);
-          });
+          
+    
         },
       },
       "/api": {
@@ -43,15 +41,8 @@ export default defineConfig(({ command, mode }) => ({
             proxyReq.setHeader("Origin", "https://everest-dmc-lime.vercel.app");
             proxyReq.setHeader("Referer", "https://everest-dmc-lime.vercel.app/");
           });
-
-          proxy.on("error", (err) => console.log("proxy error", err));
-          proxy.on("proxyRes", (proxyRes, req) => {
-            console.log("Received:", proxyRes.statusCode, req.url);
-          });
         },
       },
-    }
-
-  }
-
+   }
+  }
 }))

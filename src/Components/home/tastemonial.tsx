@@ -158,7 +158,6 @@ const Testimonials = () => {
           setTestimonials(staticTestimonials);
         }
       } catch (error) {
-        console.error("Error fetching testimonials:", error);
         // Use static data as fallback
         setTestimonials(staticTestimonials);
       } finally {

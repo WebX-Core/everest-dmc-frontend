@@ -14,7 +14,7 @@ const ImageGrid = () => {
         const response = await packageApi.getAllPackages();
         setPackages(response.data);
       } catch (error) {
-        console.error("Error fetching packages:", error);
+    
       } finally {
         setLoading(false);
       }

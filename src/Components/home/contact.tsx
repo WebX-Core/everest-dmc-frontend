@@ -300,7 +300,6 @@ const AwwwardsStyleContact = ({ hideTitle = false }: ContactFormProps) => {
 
     try {
       const response = await contactApi.submitContactForm(contactData);
-      console.log("SUCCESS!", response);
       setIsSubmitting(false);
       setIsSuccess(true);
       setFormData({
@@ -315,7 +314,6 @@ const AwwwardsStyleContact = ({ hideTitle = false }: ContactFormProps) => {
       });
       setTimeout(() => setIsSuccess(false), 4000);
     } catch (error) {
-      console.error("FAILED...", error);
       setIsSubmitting(false);
       alert("Something went wrong. Please try again later.");
     }

@@ -602,15 +602,6 @@ const PackageDetails: React.FC = () => {
                 </div>
               </div>
 
-              {/* Category Info */}
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6">
-                <h3 className="font-bold text-lg mb-3">Trip Category</h3>
-                <div className="space-y-2">
-                  <p className="text-sm"><span className="text-gray-500">Category:</span> {tour.category}</p>
-                  <p className="text-sm"><span className="text-gray-500">Type:</span> {tour.subCategory}</p>
-                  <p className="text-sm"><span className="text-gray-500">Activity:</span> {tour.activity}</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>

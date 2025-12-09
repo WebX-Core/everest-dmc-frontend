@@ -22,7 +22,7 @@ const ImageGrid = () => {
         // Get first 6 packages (2 rows of 3)
         setPackages(response.data.slice(0, 6));
       } catch (error) {
-        console.error("Error fetching packages:", error);
+      
       } finally {
         setLoading(false);
       }
