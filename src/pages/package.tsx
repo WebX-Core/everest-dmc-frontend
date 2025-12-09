@@ -19,7 +19,6 @@ const ImageGrid = () => {
         setLoading(false);
       }
     };
-
     fetchPackages();
   }, []);
 

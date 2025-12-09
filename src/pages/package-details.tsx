@@ -376,10 +376,10 @@ const PackageDetails: React.FC = () => {
                     <div key={item._id} className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="font-medium">{item.title}</p>
-                        {/* {item.description && (
+                        {/* <p className="font-medium">{item.title}</p> */}
+                        {item.description && (
                           <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: item.description }} />
-                        )} */}
+                        )}
                       </div>
                     </div>
                   ))}
@@ -396,10 +396,10 @@ const PackageDetails: React.FC = () => {
                     <div key={item._id} className="flex items-start gap-3">
                       <X className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="font-medium">{item.title}</p>
-                        {/* {item.description && (
+                        {/* <p className="font-medium">{item.title}</p> */}
+                        {item.description && (
                           <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: item.description }} />
-                        )} */}
+                        )}
                       </div>
                     </div>
                   ))}
@@ -465,22 +465,7 @@ const PackageDetails: React.FC = () => {
                   </div>
                 )}
 
-                {/* Insurance Info */}
-                {tour.insurance.length > 0 && (
-                  <div className="mb-6">
-                    <h3 className="font-semibold mb-3 flex items-center gap-2">
-                      <Heart className="w-5 h-5 text-[#1C4D9B]" /> Insurance Information
-                    </h3>
-                    <div className="space-y-3">
-                      {tour.insurance.map((item: any) => (
-                        <div key={item._id} className="p-4  rounded-lg">
-                          <p className="font-medium">{item.title}</p>
-                          <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: item.description }} />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
+
 
                 {/* Why Love This Trek */}
                 {tour.whyLoveThisTrek.length > 0 && (
@@ -561,11 +546,11 @@ const PackageDetails: React.FC = () => {
               <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6">
                 <h3 className="font-bold text-xl text-gray-800 mb-2">Need Help?</h3>
                 <p className="text-gray-500 text-sm mb-6">Get in touch with our travel experts</p>
-                
+
                 <div className="space-y-4">
-                  <a 
-                    href="https://wa.me/9779851026840" 
-                    target="_blank" 
+                  <a
+                    href="https://wa.me/9779851026840"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 p-3 rounded-lg bg-green-50 hover:bg-green-100 transition-colors group"
                   >
@@ -577,9 +562,9 @@ const PackageDetails: React.FC = () => {
                       <span className="font-medium text-gray-700 group-hover:text-green-600">+977 9851026840</span>
                     </div>
                   </a>
-                  
-                  <a 
-                    href="mailto:info@example.com" 
+
+                  <a
+                    href="mailto:info@example.com"
                     className="flex items-center gap-4 p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors group"
                   >
                     <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
@@ -591,7 +576,7 @@ const PackageDetails: React.FC = () => {
                     </div>
                   </a>
                 </div>
-                
+
                 <div className="mt-6">
                   <Link
                     to={`/contact-us?package=${encodeURIComponent(tour.name)}`}
