@@ -55,9 +55,8 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const heroHeight = window.innerHeight;
 
-      setScrolledPastHero(currentScrollY > heroHeight - 100);
+      setScrolledPastHero(currentScrollY > 200);
 
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setVisible(false);
@@ -95,14 +94,13 @@ const Navbar = () => {
   return (
     <motion.nav
       ref={navbarRef}
-      className={`w-full fixed top-0 z-[99999] transition-all duration-300 ${
-        scrolledPastHero
-          ? "bg-white shadow-sm"
-          : "bg-gradient-to-b from-white/60 to-transparent"
-      }`}
+      className="w-full fixed top-0 z-[99999]"
       style={{
         transform: visible ? "translateY(0)" : "translateY(-100%)",
-        transition: "transform 0.1s ease-out",
+        backgroundColor: scrolledPastHero ? "rgba(255, 255, 255, 1)" : "transparent",
+        backgroundImage: scrolledPastHero ? "none" : "linear-gradient(to bottom, rgba(255, 255, 255, 0.6), transparent)",
+        boxShadow: scrolledPastHero ? "0 1px 2px 0 rgba(0, 0, 0, 0.05)" : "none",
+        transition: "transform 0.3s ease-out, background-color 0.5s ease, background-image 0.5s ease, box-shadow 0.5s ease",
       }}
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: visible ? 0 : -80, opacity: 1 }}
