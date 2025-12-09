@@ -120,7 +120,7 @@ const AboutUs = () => {
       </section>
 
       {/* Certificates Section */}
-      <section className="bg-gray-50 px-4 sm:px-6 md:px-10 py-16 md:py-24">
+      <section className="bg-gray-50 py-16 md:py-24">
         <div className="w-11/12 mx-auto">
         
            <motion.div

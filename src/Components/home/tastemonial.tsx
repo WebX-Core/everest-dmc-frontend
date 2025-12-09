@@ -261,8 +261,13 @@ const Testimonials = () => {
               />
               <div>
                 <h4 className="font-bold text-gray-900 text-lg">
-                  {testimonials[currentIndex].company || testimonials[currentIndex].fullName}
+                  {testimonials[currentIndex].fullName}
                 </h4>
+                {testimonials[currentIndex].company && (
+                  <p className="text-gray-700 font-medium">
+                    {testimonials[currentIndex].company}
+                  </p>
+                )}
                 {testimonials[currentIndex].representative && testimonials[currentIndex].position && (
                   <p className="text-gray-700 font-medium">
                     {testimonials[currentIndex].representative} - {testimonials[currentIndex].position}
