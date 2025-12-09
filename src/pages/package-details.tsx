@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { packageApi } from "../services/package";
 
 import {
-  Calendar,
   Clock,
   MapPin,
   X,
@@ -12,7 +11,6 @@ import {
   Star,
   Shield,
   Backpack,
-  Heart,
   ChevronDown,
   Users,
   Mountain,
@@ -150,7 +148,7 @@ const PackageDetails: React.FC = () => {
     { icon: MapPin, label: "Location", value: tour.location },
     { icon: Mountain, label: "Max Elevation", value: tour.elevation },
     { icon: Route, label: "Distance", value: tour.distance },
-    { icon: Activity, label: "Difficulty", value: tour.difficulty },
+    { icon: Star, label: "Difficulty", value: tour.difficulty },
     { icon: Home, label: "Accommodation", value: tour.accommodation },
     { icon: Utensils, label: "Meals", value: tour.meal },
   ];
@@ -263,6 +261,35 @@ const PackageDetails: React.FC = () => {
               <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Overview</h2>
               <div className="prose max-w-none text-gray-600 text-md" dangerouslySetInnerHTML={{ __html: tour.overview }} />
             </section>
+
+            {/* Trip Highlights Section */}
+            {tour.tripHighlight.length > 0 && (
+              <section className="rounded-lg p-6 scroll-mt-20">
+                <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Trip Highlights</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {tour.tripHighlight.map((highlight: string, index: number) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-[#1C4D9B] flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-600">{highlight}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Visit Places Section */}
+            {tour.visitPlaces.length > 0 && (
+              <section className="rounded-lg p-6 scroll-mt-20">
+                <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Places You'll Visit</h2>
+                <div className="flex flex-wrap gap-2">
+                  {tour.visitPlaces.map((place: string, index: number) => (
+                    <span key={index} className="bg-[#1C4D9B]/10 text-[#1C4D9B] px-4 py-2 rounded-full text-sm font-medium">
+                      {place}
+                    </span>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* Attractions Section */}
             {tour.attraction.length > 0 && (
@@ -531,6 +558,80 @@ const PackageDetails: React.FC = () => {
                       <p className="text-gray-600 text-sm">{review.message || review.description}</p>
                     </div>
                   ))}
+                </div>
+              </section>
+            )}
+
+            {/* Seasonal Trek Section */}
+            {tour.seasonalTrek.length > 0 && (
+              <section className="rounded-lg p-6 scroll-mt-20">
+                <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Best Seasons</h2>
+                <div className="space-y-4">
+                  {tour.seasonalTrek.map((season: any) => (
+                    <div key={season._id} className="p-4 bg-gray-50 rounded-lg">
+                      <h3 className="font-semibold mb-2">{season.title}</h3>
+                      <div className="text-gray-600 text-sm" dangerouslySetInnerHTML={{ __html: season.description }} />
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Requirements Section */}
+            {tour.requirements.length > 0 && (
+              <section className="rounded-lg p-6 scroll-mt-20">
+                <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Requirements</h2>
+                <div className="space-y-3">
+                  {tour.requirements.map((req: any) => (
+                    <div key={req._id} className="flex items-start gap-3">
+                      <Info className="w-5 h-5 text-[#1C4D9B] flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-medium">{req.title}</p>
+                        {req.description && (
+                          <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: req.description }} />
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Videos Section */}
+            {tour.videos.length > 0 && (
+              <section className="rounded-lg p-6 scroll-mt-20">
+                <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Videos</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {tour.videos.map((video: any) => (
+                    <div key={video._id} className="aspect-video rounded-lg overflow-hidden">
+                      <iframe
+                        src={video.url}
+                        title={video.title || "Video"}
+                        className="w-full h-full"
+                        allowFullScreen
+                      />
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Route Map Section */}
+            {tour.routeMap && (
+              <section className="rounded-lg p-6 scroll-mt-20">
+                <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Route Map</h2>
+                <div className="rounded-lg overflow-hidden">
+                  <img src={tour.routeMap} alt="Route Map" className="w-full h-auto" />
+                </div>
+              </section>
+            )}
+
+            {/* Note Section */}
+            {tour.note && (
+              <section className="rounded-lg p-6 scroll-mt-20">
+                <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Important Note</h2>
+                <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-lg">
+                  <div className="text-gray-700" dangerouslySetInnerHTML={{ __html: tour.note }} />
                 </div>
               </section>
             )}
