@@ -21,7 +21,7 @@ const TravelPackages = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#1C4D9B] relative z-[9999] overflow-hidden"
+      className="bg-[#1C4D9B] relative py-20 z-[9999] overflow-hidden"
     >
       <motion.div
         className="w-11/12 mx-auto text-white pb-4 md:pb-32 px-2"
@@ -47,19 +47,23 @@ const TravelPackages = () => {
           {travelPackages.map((pkg) => (
             <div
               key={pkg.id}
-              className="bg-[#fff] overflow-hidden relative group p-4 flex flex-col gap-2 justify-between"
+              className="bg-[#fff] overflow-visible relative group p-3 sm:p-4 flex flex-col gap-2"
             >
-              <div className=" bottom-0 left-0">
-                <h3 className="text-xl text-[#1C4D9B] font-semibold tracking-widest uppercase">
+              <div className="flex-1 flex flex-col">
+                <h3 className="text-lg sm:text-xl text-[#1C4D9B] font-semibold tracking-wider sm:tracking-widest uppercase mb-2">
                   {pkg.title}
                 </h3>
-                <p className="text-sm text-zinc-500  pb-2 ">{pkg.category}</p>
+                <p className="text-xs sm:text-sm text-zinc-500 mb-3 leading-relaxed flex-1">
+                  {pkg.category}
+                </p>
               </div>
-              <img
-                src={pkg.image}
-                alt={pkg.title}
-                className="w-full h-[50vh] object-cover rounded-xl"
-              />
+              <div className="relative pt-[75%] sm:pt-0 sm:h-[50vh]">
+                <img
+                  src={pkg.image}
+                  alt={pkg.title}
+                  className="absolute inset-0 w-full h-full object-cover sm:rounded-none"
+                />
+              </div>
             </div>
           ))}
         </div>
@@ -74,7 +78,7 @@ const travelPackages = [
   {
     id: 1,
     category:
-      "We Provide Professional guide and porter services for safe, enriching Himalayan treks—experience local expertise, personalized support, and unforgettable mountain adventures with us.",
+      "We Provide Professional guide and porter services for safe, enriching Himalayan treks experience local expertise, personalized support, and unforgettable mountain adventures with us.",
     title: "Guide & Porter Services",
     image:
       "https://www.himalayanabode.com/wp-content/uploads/2024/02/Hire-Guide-and-Porter-in-Nepal.jpg",

@@ -83,7 +83,7 @@ const AboutUs = () => {
                 <p>
                   With a strong commitment to responsible tourism and community
                   empowerment, Everest DMC ensures every journey is not just
-                  seamless—but truly meaningful.
+                  seamless but truly meaningful.
                 </p>
               </div>
             </motion.div>

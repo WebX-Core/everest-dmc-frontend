@@ -78,7 +78,7 @@ const travelPackages = [
     id: 1,
     slug: "guide-porter-services",
     category:
-      "We Provide Professional guide and porter services for safe, enriching Himalayan treks—experience local expertise, personalized support, and unforgettable mountain adventures with us.",
+      "We Provide Professional guide and porter services for safe, enriching Himalayan treks experience local expertise, personalized support, and unforgettable mountain adventures with us.",
     title: "Guide & Porter Services",
     image:
       "https://www.himalayanabode.com/wp-content/uploads/2024/02/Hire-Guide-and-Porter-in-Nepal.jpg",

@@ -12,8 +12,19 @@ const Blog = () => {
 
   // Helper function to strip HTML tags and get excerpt
   const getExcerpt = (html: string, length: number = 150) => {
-    const text = html.replace(/<[^>]*>/g, "");
-    return text.length > length ? text.substring(0, length) + "..." : text;
+    // Create a temporary div element to parse HTML
+    const temp = document.createElement('div');
+    temp.innerHTML = html;
+    
+    // Get text content and clean it up
+    let text = temp.textContent || temp.innerText || '';
+    
+    // Replace multiple spaces, newlines, and HTML entities with a single space
+    text = text.replace(/\s+/g, ' ').trim();
+    text = text.replace(/&nbsp;/g, ' ').trim();
+    
+    // Return truncated text if needed
+    return text.length > length ? text.substring(0, length) + '...' : text;
   };
 
   // Helper function to format date
@@ -60,7 +71,7 @@ const Blog = () => {
         {isLoading && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="bg-white overflow-hidden shadow-sm animate-pulse">
+              <div key={i} className="bg-white overflow-hidden  animate-pulse">
                 {/* Image Skeleton */}
                 <div className="h-48 bg-gray-300"></div>
                 
@@ -100,63 +111,69 @@ const Blog = () => {
         {data && data.data && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {data.data.map((post, index) => (
-              <motion.article
+              <motion.div
                 key={post._id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white overflow-hidden shadow-sm"
+                className="group relative"
               >
-                {/* Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={post.banner}
-                    alt={post.title}
-                    className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-[#1C4D9B] text-white px-3 py-1 rounded-full text-sm font-medium">
-                      Travel
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <h2 className="text-xl font-bold text-gray-900 mb-3 line-clamp-3 hover:text-[#1C4D9B] transition-colors">
-                    {post.title}
-                  </h2>
-                  <p className="text-gray-600 mb-4 line-clamp-2">
-                    {getExcerpt(post.description)}
-                  </p>
-
-                  {/* Meta Info */}
-                  <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                    <div className="flex items-center gap-2">
-                      <User className="w-4 h-4" />
-                      <span>{post.author}</span>
+                <Link 
+                  to={`/blogs/${post.slug}`}
+                  className="block h-full"
+                  aria-label={`Read more about ${post.title}`}
+                >
+                  <article className="bg-white overflow-hidden h-full flex flex-col ">
+                    {/* Image */}
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={post.banner}
+                        alt=""
+                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                        aria-hidden="true"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <span className="bg-[#1C4D9B] text-white px-3 py-1 rounded-full text-sm font-medium">
+                          Travel
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
-                      <span>{formatDate(post.createdAt)}</span>
-                    </div>
-                  </div>
 
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-sm text-gray-500">
-                      <Clock className="w-4 h-4" />
-                      <span>{post.estimatedReadTime} min read</span>
+                    {/* Content */}
+                    <div className="p-6 flex-1 flex flex-col">
+                      <h2 className="text-xl font-bold text-gray-900 mb-3 line-clamp-3 group-hover:text-[#1C4D9B] transition-colors">
+                        {post.title}
+                      </h2>
+                      <p className="text-gray-600 mb-4 line-clamp-2 flex-1">
+                        {getExcerpt(post.description)}
+                      </p>
+
+                      {/* Meta Info */}
+                      <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                        <div className="flex items-center gap-2">
+                          <User className="w-4 h-4" />
+                          <span>{post.author}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4" />
+                          <span>{formatDate(post.createdAt)}</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between mt-auto">
+                        <div className="flex items-center gap-2 text-sm text-gray-500">
+                          <Clock className="w-4 h-4" />
+                          <span>{post.estimatedReadTime} min read</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-[#1C4D9B] font-medium group-hover:gap-3 transition-all">
+                          Read More
+                          <ArrowRight className="w-4 h-4" />
+                        </div>
+                      </div>
                     </div>
-                    <Link
-                      to={`/blogs/${post.slug}`}
-                      className="flex items-center gap-2 text-[#1C4D9B] font-medium hover:gap-3 transition-all"
-                    >
-                      Read More
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </div>
-                </div>
-              </motion.article>
+                  </article>
+                </Link>
+              </motion.div>
             ))}
           </div>
         )}

@@ -12,7 +12,7 @@ const process: ProcessStep[] = [
   {
     title: "Custom Itinerary Design",
     description:
-      "Our experts craft personalized programs—whether for leisure, adventure, cultural exploration, or MICE—based on your requirements.",
+      "Our experts craft personalized programs whether for leisure, adventure, cultural exploration, or MICE based on your requirements.",
   },
   {
     title: "Logistics Planning & Coordination",
@@ -32,7 +32,7 @@ const process: ProcessStep[] = [
   {
     title: "Post-Trip Feedback & Follow-Up",
     description:
-      "We value every experience. After the trip, we collect feedback to improve future services and maintain long-term partnerships.",
+      "We value every experience. After the trip, we collect feedback to improve future services and maintain long term partnerships.",
   },
 ];
 

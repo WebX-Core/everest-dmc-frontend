@@ -84,9 +84,9 @@ const ImageGrid = () => {
   if (loading) {
     return (
       <div id="services" className="w-full overflow-hidden px-2 md:h-full md:px-15 md:py-16">
-        <div className="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className="relative h-[20vh] md:h-[50vh] lg:h-[60vh] w-full bg-gray-200 animate-pulse"></div>
+            <div key={i} className="relative h-[30vh] md:h-[50vh] lg:h-[60vh] w-full bg-gray-200 animate-pulse"></div>
           ))}
         </div>
       </div>
@@ -97,13 +97,13 @@ const ImageGrid = () => {
     <>
       <div id="services" className="w-full overflow-hidden px-2 md:h-full md:px-15 md:py-16">
         <div
-          className="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"
           ref={triggerRef}
         >
           {packages.slice(0, 4).map((pkg) => (
             <div
               key={pkg._id}
-              className="relative overflow-hidden h-[20vh] md:h-[50vh] lg:h-[60vh] w-full z-10 cursor-pointer group"
+              className="relative overflow-hidden h-[30vh] md:h-[50vh] lg:h-[60vh] w-full z-10 cursor-pointer group"
               onClick={() => navigate(`/packages/${pkg.slug}`)}
             >
               <div className="absolute inset-0 bg-[#1C4D9B]/40 flex z-40 items-center justify-center group-hover:bg-[#1C4D9B]/60 transition-colors">
@@ -120,22 +120,27 @@ const ImageGrid = () => {
           ))}
 
           {/* More Services Card - Second row middle (5th position) */}
-          <div
-            className="relative overflow-x-hidden h-[20vh] md:h-[50vh] lg:h-[60vh] w-full z-[9999]"
+          <div 
+            className="relative overflow-x-hidden h-[30vh] md:h-[50vh] lg:h-[60vh] w-full z-[9999] cursor-pointer group"
             ref={zoomRef}
+            onClick={() => navigate('/packages')}
           >
             <div className="absolute inset-0 bg-[#1C4D9B] flex z-40 items-center justify-center">
-              <h3 className="text-white uppercase font-bold md:text-2xl text-center z-50">
-                More Services
-              </h3>
+              <div className="text-center">
+                <h3 className="text-white uppercase font-bold md:text-2xl text-center z-50 border-b-2 border-white pb-1">
+                  Explore More
+                </h3>
+              </div>
             </div>
             <div className="absolute inset-0 md:bg-[#1C4D9B] hidden md:flex z-40 items-center justify-center">
-              <h3
-                ref={textRef}
-                className="text-white w-fit text-xs md:text-3xl uppercase font-bold text-center border-b-1 py-3"
-              >
-                More Services
-              </h3>
+              <div className="text-center">
+                <h3
+                  ref={textRef}
+                  className="text-white w-fit text-xs md:text-3xl uppercase font-bold text-center py-3 border-b-2 border-white"
+                >
+                  Explore More
+                </h3>
+              </div>
             </div>
           </div>
 
@@ -143,7 +148,7 @@ const ImageGrid = () => {
           {packages[4] && (
             <div
               key={packages[4]._id}
-              className="relative overflow-hidden h-[20vh] md:h-[50vh] lg:h-[60vh] w-full z-10 cursor-pointer group"
+              className="relative overflow-hidden h-[30vh] md:h-[50vh] lg:h-[60vh] w-full z-10 cursor-pointer group"
               onClick={() => navigate(`/packages/${packages[4].slug}`)}
             >
               <div className="absolute inset-0 bg-[#1C4D9B]/40 flex z-40 items-center justify-center group-hover:bg-[#1C4D9B]/60 transition-colors">

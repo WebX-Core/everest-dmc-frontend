@@ -5,8 +5,34 @@ import {
   FaLinkedinIn,
   FaTelegramPlane,
 } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import { packageApi } from "../../services/package";
 
 const Footer = () => {
+  const [packages, setPackages] = useState<{ name: string; slug: string }[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPackages = async () => {
+      try {
+        const response = await packageApi.getAllPackages();
+        // Get first 4 packages
+        setPackages(
+          response.data.slice(0, 4).map((pkg) => ({
+            name: pkg.name,
+            slug: pkg.slug,
+          }))
+        );
+      } catch (error) {
+        console.error("Error fetching packages:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPackages();
+  }, []);
+
   return (
     <footer
       className="relative py-16 px-2 flex flex-col justify-center text-black bg-fixed"
@@ -28,16 +54,32 @@ const Footer = () => {
             Everest as our inspiration.
           </p>
           <div className="flex space-x-4 mt-2">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaFacebookF className="text-white hover:scale-110 transition-transform" />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaInstagram className="text-white hover:scale-110 transition-transform" />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaLinkedinIn className="text-white hover:scale-110 transition-transform" />
             </a>
-            <a href="https://telegram.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://telegram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FaTelegramPlane className="text-white hover:scale-110 transition-transform" />
             </a>
           </div>
@@ -47,12 +89,10 @@ const Footer = () => {
         {[
           {
             title: "Destinations",
-            links: [
-              "Everest Base Camp",
-              "Three Pass Trek",
-              "Evere & Gokyo Trek",
-              "Popular Peak Climbing",
-            ],
+            links: loading
+              ? ["Loading...", "", "", ""]
+              : packages.map((pkg) => pkg.name),
+            className: "hidden md:flex flex-col"
           },
           {
             title: "Services",
@@ -62,6 +102,7 @@ const Footer = () => {
               "Luxury Base Camps",
               "Expedition Planning",
             ],
+            className: "hidden md:flex flex-col"
           },
           {
             title: "Contact Us",
@@ -71,19 +112,28 @@ const Footer = () => {
               "climb@everestdmc.com",
               "info@everestdmc.com",
             ],
+            className: "flex flex-col"
           },
         ].map((col, i) => (
-          <div key={i} className="flex flex-col items-center md:items-start text-center md:text-left">
+          <div key={i} className={`${col.className || 'flex flex-col'} items-center md:items-start text-center md:text-left`}>
             <h4 className="font-bold text-white mb-3 text-lg">{col.title}</h4>
             <ul className="space-y-2">
               {col.links.map((text, j) => (
                 <li key={j}>
-                  <a
-                    href="#"
-                    className="text-white hover:underline transition-colors"
-                  >
-                    {text}
-                  </a>
+                  {col.title === "Services" ? (
+                    <span className="text-white hover:underline cursor-default">{text}</span>
+                  ) : (
+                    <a
+                      href={
+                        col.title === "Destinations" && !loading
+                          ? `/packages/${packages[j]?.slug}`
+                          : "#"
+                      }
+                      className="text-white hover:underline transition-colors"
+                    >
+                      {text}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

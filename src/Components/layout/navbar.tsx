@@ -56,8 +56,10 @@ const Navbar = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      setScrolledPastHero(currentScrollY > 200);
+      // Change background when scrolled more than 50px
+      setScrolledPastHero(currentScrollY > 50);
 
+      // Hide navbar when scrolling down, show when scrolling up
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setVisible(false);
       } else {
@@ -97,10 +99,10 @@ const Navbar = () => {
       className="w-full fixed top-0 z-[99999]"
       style={{
         transform: visible ? "translateY(0)" : "translateY(-100%)",
-        backgroundColor: scrolledPastHero ? "rgba(255, 255, 255, 1)" : "transparent",
-        backgroundImage: scrolledPastHero ? "none" : "linear-gradient(to bottom, rgba(255, 255, 255, 0.6), transparent)",
-        boxShadow: scrolledPastHero ? "0 1px 2px 0 rgba(0, 0, 0, 0.05)" : "none",
-        transition: "transform 0.3s ease-out, background-color 0.5s ease, background-image 0.5s ease, box-shadow 0.5s ease",
+        backgroundColor: scrolledPastHero ? "rgba(255, 255, 255, 0.98)" : "transparent",
+        backdropFilter: scrolledPastHero ? "blur(8px)" : "none",
+        boxShadow: scrolledPastHero ? "0 2px 10px rgba(0, 0, 0, 0.1)" : "none",
+        transition: "all 0.3s ease-in-out",
       }}
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: visible ? 0 : -80, opacity: 1 }}
@@ -135,7 +137,7 @@ const Navbar = () => {
                 location.pathname === link.path
                   ? "text-[#1C4D9B] font-bold"
                   : scrolledPastHero
-                  ? "text-zinc-500 hover:text-[#1C4D9B] font-medium"
+                  ? "text-gray-700 hover:text-[#1C4D9B] font-medium"
                   : "text-white hover:text-[#1C4D9B] font-medium"
               }`}
             >
