@@ -47,7 +47,7 @@ const BlogDetail = () => {
         window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
       }
     } catch (err) {
-      console.error('Error sharing:', err);
+    
     }
   };
 

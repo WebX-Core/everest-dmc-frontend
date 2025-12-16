@@ -24,7 +24,7 @@ const Footer = () => {
           }))
         );
       } catch (error) {
-        console.error("Error fetching packages:", error);
+     
       } finally {
         setLoading(false);
       }
