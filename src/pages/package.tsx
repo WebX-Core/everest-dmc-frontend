@@ -24,7 +24,7 @@ const ImageGrid = () => {
 
   return (
     <>
-      <div id="services" className="w-full px-2 md:px-20 py-8 md:py-16">
+      <div id="packages" className="w-full px-2 md:px-20 py-8 md:py-16">
        
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
@@ -110,49 +110,7 @@ const travelPackages = [
   },
 ];
 
-const TravelPackages = () => {
-  const navigate = useNavigate();
 
-  return (
-    <section id="more-services-section" className="bg-[#1C4D9B] relative overflow-hidden py-16">
-
-      <div className="w-11/12 mx-auto text-white pb-4 md:pb-32 px-2">
-        <h3 className="w-fit mx-auto mb-16 text-white text-4xl uppercase font-medium text-center px-6 border-b-2 py-3">
-          More Services
-        </h3>
-        <h2
-          className="w-full sm:w-11/11 md:w-4/5 lg:w-3/5 xl:w-1/2 mx-auto text-white text-base sm:text-lg md:text-xl font-normal mb-20 text-center"
-          style={{ textJustify: "inter-word" }}
-        >
-          We specialize in delivering the finest travel experiences in the
-          iconic Mount Everest region, offering expertly curated packages
-          designed for adventure, comfort, and authenticity.
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {travelPackages.map((pkg) => (
-            <div
-              key={pkg.id}
-              className="bg-[#fff] overflow-hidden relative group p-4 flex flex-col gap-2 justify-between transition-transform duration-300 "
-            >
-              <div className="bottom-0 left-0">
-                <h3 className="text-xl text-[#1C4D9B] font-semibold tracking-widest uppercase group-hover:text-blue-700 transition-colors">
-                  {pkg.title}
-                </h3>
-                <p className="text-sm text-zinc-500 pb-2">{pkg.category}</p>
-              </div>
-              <img
-                src={pkg.image}
-                alt={pkg.title}
-                className="w-full h-[50vh] object-cover rounded-none"
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
 
 const PackagesPage = () => {
   return (
@@ -187,9 +145,6 @@ const PackagesPage = () => {
 
       {/* Image Grid Section */}
       <ImageGrid />
-
-      {/* Travel Packages Section */}
-      <TravelPackages />
     </div>
   );
 };

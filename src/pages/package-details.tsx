@@ -397,17 +397,17 @@ const PackageDetails: React.FC = () => {
             {/* Cost Includes */}
             {tour.inclusion.length > 0 && (
               <section id="includes" className=" p-6 scroll-mt-20">
-                <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">What's Included</h2>
+                <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B] flex items-center gap-3">
+                  <CheckCircle className="w-6 h-6 text-green-500" />
+                  What's Included
+                </h2>
                 <div className="space-y-3">
                   {tour.inclusion.map((item: any) => (
-                    <div key={item._id} className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                      <div>
-                        {/* <p className="font-medium">{item.title}</p> */}
-                        {item.description && (
-                          <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: item.description }} />
-                        )}
-                      </div>
+                    <div key={item._id}>
+                      {/* <p className="font-medium">{item.title}</p> */}
+                      {item.description && (
+                        <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: item.description }} />
+                      )}
                     </div>
                   ))}
                 </div>
@@ -417,17 +417,17 @@ const PackageDetails: React.FC = () => {
             {/* Cost Excludes */}
             {tour.exclusion.length > 0 && (
               <section id="excludes" className="rounded-lg p-6 scroll-mt-20">
-                <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">What's Not Included</h2>
+                <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B] flex items-center gap-3">
+                  <X className="w-6 h-6 text-red-500" />
+                  What's Not Included
+                </h2>
                 <div className="space-y-3">
                   {tour.exclusion.map((item: any) => (
-                    <div key={item._id} className="flex items-start gap-3">
-                      <X className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-                      <div>
-                        {/* <p className="font-medium">{item.title}</p> */}
-                        {item.description && (
-                          <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: item.description }} />
-                        )}
-                      </div>
+                    <div key={item._id}>
+                      {/* <p className="font-medium">{item.title}</p> */}
+                      {item.description && (
+                        <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: item.description }} />
+                      )}
                     </div>
                   ))}
                 </div>
@@ -578,21 +578,23 @@ const PackageDetails: React.FC = () => {
             )}
 
             {/* Requirements Section */}
-            {tour.requirements.length > 0 && (
+            {tour.requirements.length > 0 && tour.requirements.some((req: any) => typeof req === 'object' && req.title) && (
               <section className="rounded-lg p-6 scroll-mt-20">
                 <h2 className="text-2xl font-bold mb-4 text-[#1C4D9B]">Requirements</h2>
                 <div className="space-y-3">
-                  {tour.requirements.map((req: any) => (
-                    <div key={req._id} className="flex items-start gap-3">
-                      <Info className="w-5 h-5 text-[#1C4D9B] flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="font-medium">{req.title}</p>
-                        {req.description && (
-                          <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: req.description }} />
-                        )}
+                  {tour.requirements
+                    .filter((req: any) => typeof req === 'object' && req.title) // Only show actual requirement objects
+                    .map((req: any, index: number) => (
+                      <div key={req._id || index} className="flex items-start gap-3">
+                        <Info className="w-5 h-5 text-[#1C4D9B] flex-shrink-0 mt-0.5" />
+                        <div>
+                          <p className="font-medium">{req.title}</p>
+                          {req.description && (
+                            <div className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: req.description }} />
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
                 </div>
               </section>
             )}

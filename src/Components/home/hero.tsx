@@ -14,9 +14,10 @@ const Banner = () => {
 
   return (
     <motion.div
-      className="relative w-full h-screen flex items-center justify-center overflow-hidden"
-      initial={{ scale: 0.98, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
+      className="relative w-screen h-screen flex items-center justify-center overflow-hidden"
+      style={{ margin: 0, padding: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
       id="home"
     >
@@ -26,7 +27,7 @@ const Banner = () => {
         loop
         muted
         playsInline
-        className="absolute w-full h-full object-cover top-0 left-0 z-0"
+        className="absolute inset-0 w-full h-full object-cover z-0"
       >
         <source src="/bg-video.mp4" type="video/mp4" />
         {/* Your browser does not support the video tag. */}

@@ -10,7 +10,9 @@ import Home from "./pages/Home";
 import About from "./pages/aboutUs";
 import Blog from "./pages/blog";
 import BlogDetail from "./pages/blog-detail";
-import PackagesPage from "./pages/package";
+import ServicesPage from "./pages/services";
+import ServiceDetails from "./pages/service-details";
+import PackagesPage from "./pages/package.tsx";
 import PackageDetails from "./pages/package-details";
 import ContactUs from "./pages/contact-us";
 import ScrollToTop from "./Components/ScrollToTop";
@@ -77,7 +79,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/services" element={<PackagesPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/services/:slug" element={<ServiceDetails />} />
             <Route path="/blogs" element={<Blog />} />
             <Route path="/blogs/:slug" element={<BlogDetail />} />
             <Route path="/packages" element={<PackagesPage />} />
