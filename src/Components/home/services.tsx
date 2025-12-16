@@ -40,7 +40,7 @@ const TravelPackages = () => {
       className="bg-[#1C4D9B] relative py-20 z-[9999] overflow-hidden"
     >
       <motion.div
-        className="w-11/12 mx-auto text-white pb-4 md:pb-32 px-2"
+        className="w-11/12 mx-auto text-white pb-4 md:pb-32 px-2 md:px-4"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 50 }}

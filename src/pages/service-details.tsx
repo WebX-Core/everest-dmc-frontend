@@ -17,7 +17,7 @@ const useService = (slug: string) => {
       return service;
     },
     enabled: !!slug,
-  });
+  }); 
 };
 
 const ServiceDetails: React.FC = () => {

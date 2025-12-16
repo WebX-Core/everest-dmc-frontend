@@ -44,34 +44,34 @@ const ImageGrid = () => {
 
     // Small delay to ensure DOM is ready
     const timer = setTimeout(() => {
-      // Zoom animation (only for desktop)
-      gsap.fromTo(
-        zoomRef.current,
-        { scale: 1 },
-        {
-          scale: scaleValue,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: zoomRef.current,
-            start: "center 50%",
-            endTrigger: triggerRef.current,
-            end: "center top-=0",
-            scrub: 2,
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
+      // Zoom animation (only for desktop) - COMMENTED OUT FOR NOW
+      // gsap.fromTo(
+      //   zoomRef.current,
+      //   { scale: 1 },
+      //   {
+      //     scale: scaleValue,
+      //     ease: "power2.out",
+      //     scrollTrigger: {
+      //       trigger: zoomRef.current,
+      //       start: "center 50%",
+      //       endTrigger: triggerRef.current,
+      //       end: "center top-=0",
+      //       scrub: 2,
+      //       toggleActions: "play none none reverse",
+      //     },
+      //   }
+      // );
 
-      // Fade out the "More Services" text (only for desktop)
-      gsap.to(textRef.current, {
-        opacity: 0,
-        scrollTrigger: {
-          trigger: zoomRef.current,
-          start: "top 5%",
-          end: "top",
-          scrub: 2,
-        },
-      });
+      // Fade out the "More Services" text (only for desktop) - COMMENTED OUT FOR NOW
+      // gsap.to(textRef.current, {
+      //   opacity: 0,
+      //   scrollTrigger: {
+      //     trigger: zoomRef.current,
+      //     start: "top 5%",
+      //     end: "top",
+      //     scrub: 2,
+      //   },
+      // });
     }, 100);
 
     // Cleanup function to kill ScrollTrigger instances on unmount
@@ -83,7 +83,7 @@ const ImageGrid = () => {
 
   if (loading) {
     return (
-      <div id="services" className="w-full overflow-hidden px-2 md:h-full md:px-15 md:py-16">
+      <div id="services" className="w-full overflow-hidden px-2 md:h-full md:px-16 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <div key={i} className="relative h-[30vh] md:h-[50vh] lg:h-[60vh] w-full bg-gray-200 animate-pulse"></div>
@@ -95,7 +95,7 @@ const ImageGrid = () => {
 
   return (
     <>
-      <div id="services" className="w-full overflow-hidden px-2 md:h-full md:px-15 md:py-16">
+      <div id="services" className="w-full overflow-hidden px-2 md:h-full md:px-20 md:py-16">
         <div
           className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"
           ref={triggerRef}
