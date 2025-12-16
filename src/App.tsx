@@ -71,7 +71,7 @@ function App() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.7 }}
-          className="min-h-screen font-sans"
+          className="min-h-screen font-sans overflow-x-hidden"
         >
           <Navbar />
           <WhatsAppChat />

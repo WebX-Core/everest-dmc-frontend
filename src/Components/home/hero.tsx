@@ -14,8 +14,7 @@ const Banner = () => {
 
   return (
     <motion.div
-      className="relative w-screen h-screen flex items-center justify-center overflow-hidden"
-      style={{ margin: 0, padding: 0 }}
+      className="relative w-full h-screen flex items-center justify-center overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
