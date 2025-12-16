@@ -17,7 +17,17 @@ import PackageDetails from "./pages/package-details";
 import ContactUs from "./pages/contact-us";
 import ScrollToTop from "./Components/ScrollToTop";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+      refetchOnMount: false,
+      staleTime: Infinity,
+    },
+  },
+});
 
 function App() {
   const [loading, setLoading] = useState(
