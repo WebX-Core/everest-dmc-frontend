@@ -1,7 +1,5 @@
-import { lazy } from "react";
 import process from "../../data/OurProcessData";
 
-const GlobeDemo = lazy(() => import("../globe-container"));
 
 const OurProcess = () => {
   return (

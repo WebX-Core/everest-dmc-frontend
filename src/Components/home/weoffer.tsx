@@ -40,7 +40,6 @@ const ImageGrid = () => {
 
     if (!isDesktop || !zoomRef.current || !textRef.current) return;
 
-    let scaleValue = 3.472;
 
     // Small delay to ensure DOM is ready
     const timer = setTimeout(() => {

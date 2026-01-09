@@ -36,14 +36,22 @@ function App() {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [minTimePassed, setMinTimePassed] = useState(false);
 
-  // Preload video while showing loader
+  // Preload video while showing loader (with timeout fallback)
   useEffect(() => {
+    if (!loading) return;
+
     const video = document.createElement("video");
     video.src = "/bg-video.mp4";
     video.preload = "auto";
     video.oncanplaythrough = () => setVideoLoaded(true);
+    video.onerror = () => setVideoLoaded(true); // Continue even if video fails
     video.load();
-  }, []);
+
+    // Fallback: max 5 seconds wait for video, then proceed anyway
+    const timeout = setTimeout(() => setVideoLoaded(true), 5000);
+
+    return () => clearTimeout(timeout);
+  }, [loading]);
 
   // Minimum loader time
   useEffect(() => {
