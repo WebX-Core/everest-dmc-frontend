@@ -39,8 +39,9 @@ const WhatsAppChat = () => {
 
       {/* WhatsApp button */}
       <div
-        className="h-14 w-14 bg-green-500 text-white rounded-full fixed bottom-4 right-4 z-50 hover:scale-110 transition-transform duration-200 cursor-pointer flex items-center justify-center"
+        className="h-14 w-14 bg-green-500 text-white rounded-full fixed bottom-4 right-4 z-50 hover:scale-110 transition-transform duration-200 cursor-pointer flex items-center justify-center active:scale-95"
         onClick={handleRedirect}
+        style={{ WebkitTapHighlightColor: 'transparent' }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

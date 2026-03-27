@@ -35,7 +35,7 @@ const Footer = () => {
 
   return (
     <footer
-      className="relative py-16 px-2 flex flex-col justify-center text-black bg-fixed"
+      className="relative py-16 px-2 flex flex-col justify-center text-black md:bg-fixed"
       style={{
         backgroundImage:
           "linear-gradient(to bottom, rgba(28, 77, 155, 0.65), rgba(28, 77, 155, 0.75)), url('https://cdn.britannica.com/39/76239-050-DE5FCF36/Climbers-side-Nepali-Mount-Everest.jpg')",
@@ -143,7 +143,7 @@ const Footer = () => {
 
       {/* Divider */}
       <div className="w-11/12 mx-auto mt-10 border-t border-blue-300 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white text-center">
-        <p>© 2025 Everest DMC. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Everest DMC. All rights reserved.</p>
         <div className="flex items-center gap-2 justify-center">
           <span>Designed & Developed By</span>
           <a
