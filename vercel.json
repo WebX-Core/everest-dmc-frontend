@@ -1,7 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/api/cache/:path*", "destination": "https://backend.everestdmc.com/api/cache/:path*" },
-    { "source": "/api/:path*", "destination": "https://backend.everestdmc.com/api/v1/:path*" },
-    { "source": "/(.*)", "destination": "/" }
-  ]
-}
