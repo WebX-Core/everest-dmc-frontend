@@ -1,4 +1,5 @@
 import process from "../../data/OurProcessData";
+import dmcVideo from "../../assets/service-assets/dmc-v.mp4";
 
 
 const OurProcess = () => {
@@ -78,7 +79,7 @@ const OurProcess = () => {
             <div className="sticky top-0 h-screen flex items-center justify-center w-full">
               <div className="relative w-fit h-[90vh] md:h-[40rem] lg:h-[70vh] rounded-2xl overflow-hidden shadow-lg border-3 border-blue-800">
                 <video
-                  src="/services/dmc-v.mp4" // Replace with actual path
+                  src={dmcVideo}
                   autoPlay
                   muted
                   loop

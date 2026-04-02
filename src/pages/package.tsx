@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { packageApi, Package } from "../services/package";
+import vehicleImage from "../assets/service-assets/vehicle.png";
 
 const ImageGrid = () => {
   const navigate = useNavigate();
@@ -98,7 +99,7 @@ const travelPackages = [
     category:
       "We provide rental cars for convenient and efficient travel, saving you time and eliminating the hassle of relying on public transportation during your trip",
     title: "Vehicle Rental",
-    image: "/services/vehicle.png",
+    image: vehicleImage,
   },
   {
     id: 4,

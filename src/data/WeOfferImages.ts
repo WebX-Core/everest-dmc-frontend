@@ -1,3 +1,5 @@
+import everestMinImage from "../assets/service-assets/everest-min.jpg";
+
 export interface ImageData {
   id: number;
   slug: string;
@@ -11,7 +13,7 @@ const images: ImageData[] = [
   {
     id: 1,
     slug: "everest-base-camp-trek",
-    src: "/services/everest-min.jpg",
+    src: everestMinImage,
     alt: "Image 1",
     title: "Everest Base Camp Trek",
   },
