@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Navbar from "./Components/layout/navbar";
 import Footer from "./Components/layout/footer";
@@ -16,6 +16,8 @@ import PackagesPage from "./pages/package.tsx";
 import PackageDetails from "./pages/package-details";
 import ContactUs from "./pages/contact-us";
 import ScrollToTop from "./Components/ScrollToTop";
+import B2BAgentPopup from "./Components/B2BAgentPopup";
+import WhatsAppRedirect from "./pages/whatsapp-redirect";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,11 +32,13 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  const location = useLocation();
   const [loading, setLoading] = useState(
     sessionStorage.getItem("hasLoaded") ? false : true
   );
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [minTimePassed, setMinTimePassed] = useState(false);
+  const [showB2BPopup, setShowB2BPopup] = useState(false);
 
   // Preload video while showing loader (with timeout fallback)
   useEffect(() => {
@@ -67,6 +71,28 @@ function App() {
       sessionStorage.setItem("hasLoaded", "true");
     }
   }, [minTimePassed, videoLoaded, loading]);
+
+  useEffect(() => {
+    if (loading || location.pathname !== "/") return;
+
+    const hasSeenPopup = sessionStorage.getItem("agentPopupSeen");
+    setShowB2BPopup(!hasSeenPopup);
+  }, [loading, location.pathname]);
+
+  useEffect(() => {
+    if (!showB2BPopup) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [showB2BPopup]);
+
+  const handleCloseB2BPopup = () => {
+    sessionStorage.setItem("agentPopupSeen", "true");
+    setShowB2BPopup(false);
+  };
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -104,7 +130,10 @@ function App() {
             <Route path="/packages" element={<PackagesPage />} />
             <Route path="/packages/:slug" element={<PackageDetails />} />
             <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/whatsapp" element={<WhatsAppRedirect />} />
+            <Route path="/whatsapp/" element={<WhatsAppRedirect />} />
           </Routes>
+          <B2BAgentPopup isOpen={showB2BPopup} onClose={handleCloseB2BPopup} />
           <Footer />
         </motion.div>
       )}
