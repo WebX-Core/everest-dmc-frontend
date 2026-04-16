@@ -11,6 +11,7 @@ const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [visible, setVisible] = useState(true);
   const location = useLocation();
+  const isChatPage = location.pathname === "/chat";
 
   const navbarRef = useRef<HTMLElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -100,9 +101,15 @@ const Navbar = () => {
       className="w-full fixed top-0 z-[99999]"
       style={{
         transform: visible ? "translateY(0)" : "translateY(-100%)",
-        backgroundColor: scrolledPastHero ? "rgba(255, 255, 255, 0.98)" : "transparent",
-        backdropFilter: scrolledPastHero ? "blur(8px)" : "none",
-        boxShadow: scrolledPastHero ? "0 2px 10px rgba(0, 0, 0, 0.1)" : "none",
+        backgroundColor:
+          scrolledPastHero || isChatPage
+            ? "rgba(255, 255, 255, 0.98)"
+            : "transparent",
+        backdropFilter: scrolledPastHero || isChatPage ? "blur(8px)" : "none",
+        boxShadow:
+          scrolledPastHero && !isChatPage
+            ? "0 2px 10px rgba(0, 0, 0, 0.1)"
+            : "none",
         transition: "all 0.3s ease-in-out",
       }}
       initial={{ y: -80, opacity: 0 }}
@@ -137,6 +144,8 @@ const Navbar = () => {
               className={`transition-all ${
                 location.pathname === link.path
                   ? "text-[#1C4D9B] font-bold"
+                  : isChatPage
+                  ? "text-black hover:text-[#1C4D9B] font-medium"
                   : scrolledPastHero
                   ? "text-gray-700 hover:text-[#1C4D9B] font-medium"
                   : "text-white hover:text-[#1C4D9B] font-medium"

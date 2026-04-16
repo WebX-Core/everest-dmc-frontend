@@ -18,6 +18,7 @@ import ContactUs from "./pages/contact-us";
 import ScrollToTop from "./Components/ScrollToTop";
 import B2BAgentPopup from "./Components/B2BAgentPopup";
 import WhatsAppRedirect from "./pages/whatsapp-redirect";
+import ChatPage from "./pages/chat";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -130,6 +131,7 @@ function App() {
             <Route path="/packages" element={<PackagesPage />} />
             <Route path="/packages/:slug" element={<PackageDetails />} />
             <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/chat" element={<ChatPage />} />
             <Route path="/whatsapp" element={<WhatsAppRedirect />} />
             <Route path="/whatsapp/" element={<WhatsAppRedirect />} />
           </Routes>

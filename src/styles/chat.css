@@ -1,0 +1,80 @@
+.chat-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(180deg, #f6fff8 0%, #eef7ff 100%);
+}
+
+.whatsapp-card {
+  width: 100%;
+  max-width: 460px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 36px 28px;
+  text-align: center;
+}
+
+.whatsapp-icon-wrap {
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.whatsapp-icon-wrap svg {
+  width: 70px;
+  height: 70px;
+  fill: #ffffff;
+}
+
+.whatsapp-card h1 {
+  margin: 0;
+  font-size: 1.55rem;
+  color: #111827;
+}
+
+.whatsapp-card p {
+  margin: 10px 0 24px;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.whatsapp-chat-btn {
+  display: inline-block;
+  background: #25d366;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 12px 28px;
+  border-radius: 999px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.whatsapp-chat-btn:hover {
+  transform: translateY(-1px);
+  background: #1fb95b;
+}
+
+@media (max-width: 480px) {
+  .whatsapp-card {
+    padding: 30px 20px;
+  }
+
+  .whatsapp-icon-wrap {
+    width: 110px;
+    height: 110px;
+  }
+
+  .whatsapp-icon-wrap svg {
+    width: 62px;
+    height: 62px;
+  }
+}
