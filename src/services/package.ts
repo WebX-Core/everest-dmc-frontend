@@ -81,10 +81,11 @@ export const packageApi = {
   },
 
   getPackageBySlug: async (slug: string): Promise<Package> => {
-    const response = await api.get("/package");
-    const packageData = response.data.data.find(
-      (pkg: Package) => pkg.slug === slug
-    );
+    const response = await api.get(`/package/${slug}`);
+    const packageData =
+      response?.data?.data && !Array.isArray(response.data.data)
+        ? response.data.data
+        : response?.data?.data?.[0] ?? response?.data;
     if (!packageData) {
       throw new Error("Package not found");
     }

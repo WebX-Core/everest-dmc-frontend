@@ -689,7 +689,7 @@ const PackageDetails: React.FC = () => {
                     .map((season: any) => (
                     <div
                       key={season._id || season.title}
-                      className="p-3 lg:p-4 bg-gray-50 rounded-lg"
+                      className="p-3 lg:p-4 border border-gray-200 rounded-lg"
                     >
                       <h3 className="font-semibold mb-2 text-base">
                         {season.title}
