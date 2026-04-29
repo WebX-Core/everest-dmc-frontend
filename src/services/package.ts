@@ -88,6 +88,42 @@ export const packageApi = {
     if (!packageData) {
       throw new Error("Package not found");
     }
-    return packageData;
+
+    // Some API responses return seasonalTrek as ID strings instead of populated objects.
+    // Resolve those IDs so the package details UI can render title/description reliably.
+    const seasonIds = Array.isArray(packageData.seasonalTrek)
+      ? packageData.seasonalTrek.filter(
+          (item: any) => typeof item === "string" && item
+        )
+      : [];
+
+    if (seasonIds.length === 0) {
+      return packageData;
+    }
+
+    try {
+      const seasonalResponse = await api.get("/seasonal-trek");
+      const seasonalItems = Array.isArray(seasonalResponse?.data?.data)
+        ? seasonalResponse.data.data
+        : Array.isArray(seasonalResponse?.data)
+          ? seasonalResponse.data
+          : [];
+
+      const seasonalMap = new Map(
+        seasonalItems
+          .filter((item: any) => item && item._id)
+          .map((item: any) => [item._id, item])
+      );
+
+      return {
+        ...packageData,
+        seasonalTrek: seasonIds
+          .map((id: string) => seasonalMap.get(id))
+          .filter(Boolean),
+      };
+    } catch {
+      // Keep original data if seasonal endpoint is unavailable.
+      return packageData;
+    }
   },
 };

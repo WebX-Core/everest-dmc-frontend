@@ -676,22 +676,26 @@ const PackageDetails: React.FC = () => {
             )}
 
             {/* Seasonal Trek Section */}
-            {tour.seasonalTrek.length > 0 && (
+            {tour.seasonalTrek.some(
+              (season: any) => season && typeof season === "object",
+            ) && (
               <section className="rounded-lg p-3 sm:p-6 scroll-mt-20">
                 <h2 className="text-xl lg:text-2xl font-bold mb-4 text-[#1C4D9B]">
                   Best Seasons
                 </h2>
                 <div className="space-y-4">
-                  {tour.seasonalTrek.map((season: any) => (
+                  {tour.seasonalTrek
+                    .filter((season: any) => season && typeof season === "object")
+                    .map((season: any) => (
                     <div
-                      key={season._id}
+                      key={season._id || season.title}
                       className="p-3 lg:p-4 bg-gray-50 rounded-lg"
                     >
                       <h3 className="font-semibold mb-2 text-base">
                         {season.title}
                       </h3>
                       <div
-                        className="text-gray-600 text-sm lg:text-base"
+                        className="text-sm lg:text-base [&_*]:!text-gray-700 [&_a]:!text-[#1C4D9B] [&_a]:underline [&_img]:max-w-full [&_img]:h-auto"
                         dangerouslySetInnerHTML={{ __html: season.description }}
                       />
                     </div>
