@@ -132,17 +132,39 @@
 @media (max-width: 1024px) {
   .associates-section {
     margin-top: 0;
+    max-width: 100%;
+  }
+
+  .associates-logos {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .logo-item {
+    min-width: 120px;
+    max-width: 150px;
   }
 }
 
 @media (max-width: 768px) {
   .associates-logos {
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 24px;
   }
 
   .logo-item {
-    max-width: 100%;
+    flex: 0 1 calc(50% - 12px);
+    min-width: 0;
+    max-width: 180px;
+  }
+
+  .logo-item img {
+    max-width: 110px;
+    max-height: 80px;
+  }
+
+  .logo-name {
+    font-size: 0.75rem;
   }
 }
 
@@ -162,20 +184,25 @@
   }
 
   .associates-section {
-    padding: 0;
+    padding: 0 10px;
   }
 
   .associates-logos {
     gap: 20px;
   }
 
+  .logo-item {
+    flex: 0 1 calc(50% - 10px);
+    min-width: 0;
+    max-width: 100%;
+  }
+
   .logo-item img {
-    max-width: 120px;
-    max-height: 80px;
+    max-width: 90px;
+    max-height: 70px;
   }
 
   .logo-name {
-    font-size: 0.75rem;
-    max-width: 100%;
+    font-size: 0.7rem;
   }
 }
