@@ -1,10 +1,12 @@
 .chat-page {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 40px 20px;
   background: linear-gradient(180deg, #f6fff8 0%, #eef7ff 100%);
+  gap: 40px;
 }
 
 .whatsapp-card {
@@ -15,11 +17,12 @@
   border-radius: 20px;
   padding: 36px 28px;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .whatsapp-icon-wrap {
-  width: 130px;
-  height: 130px;
+  width: 80px;
+  height: 80px;
   margin: 0 auto 20px;
   border-radius: 50%;
   background: #25d366;
@@ -29,8 +32,8 @@
 }
 
 .whatsapp-icon-wrap svg {
-  width: 70px;
-  height: 70px;
+  width: 45px;
+  height: 45px;
   fill: #ffffff;
 }
 
@@ -63,6 +66,86 @@
   background: #1fb95b;
 }
 
+/* Associates Section */
+.associates-section {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 0;
+  padding: 0;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.associates-section h3 {
+  margin: 0 0 24px;
+  font-size: 1.1rem;
+  color: #374151;
+  font-weight: 600;
+  text-align: center;
+}
+
+.associates-logos {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+.logo-item {
+  flex: 0 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  max-width: 160px;
+  min-width: 140px;
+}
+
+.logo-item img {
+  max-width: 140px;
+  max-height: 100px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(0%);
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.logo-item img:hover {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.logo-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-align: center;
+  line-height: 1.4;
+}
+
+@media (max-width: 1024px) {
+  .associates-section {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .associates-logos {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .logo-item {
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 480px) {
   .whatsapp-card {
     padding: 30px 20px;
@@ -76,5 +159,23 @@
   .whatsapp-icon-wrap svg {
     width: 62px;
     height: 62px;
+  }
+
+  .associates-section {
+    padding: 0;
+  }
+
+  .associates-logos {
+    gap: 20px;
+  }
+
+  .logo-item img {
+    max-width: 120px;
+    max-height: 80px;
+  }
+
+  .logo-name {
+    font-size: 0.75rem;
+    max-width: 100%;
   }
 }

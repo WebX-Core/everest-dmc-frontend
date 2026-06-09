@@ -1,4 +1,9 @@
 import '../styles/chat.css';
+import nattaLogo from '../assets/associates/natta.png';
+import ntbLogo from '../assets/associates/ntb.png';
+import taanLogo from '../assets/associates/taan.png';
+import gvernLogo from '../assets/associates/gvern.png';
+import nmaLogo from '../assets/associates/nma.png';
 
 const WhatsAppIcon = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -17,11 +22,40 @@ const ChatPage = () => {
         <div className="whatsapp-icon-wrap">
           <WhatsAppIcon />
         </div>
-        <h1>Chat With Us on WhatsApp</h1>
-        <p>Fast reply from our travel support team.</p>
+        <h1>B2B Agent Desk</h1>
+       <p>
+  Connect instantly with our Inbound Nepal wholesale team to request confidential 2026/2027 net rates, white-label itineraries, and fixed departures.
+</p>
         <a className="whatsapp-chat-btn" href={whatsappUrl} target="_blank" rel="noreferrer">
           Chat Now
         </a>
+      </div>
+
+      {/* Associate Logos Section - Independent Below */}
+      <div className="associates-section">
+        <h3>Our Associates</h3>
+        <div className="associates-logos">
+          <div className="logo-item">
+            <img src={nattaLogo} alt="NATTA" />
+            <span className="logo-name">Nepal Association of Tour & Travel Agents (NATTA)</span>
+          </div>
+          <div className="logo-item">
+            <img src={ntbLogo} alt="NTB" />
+            <span className="logo-name">Nepal Tourism Board</span>
+          </div>
+          <div className="logo-item">
+            <img src={taanLogo} alt="TAAN" />
+            <span className="logo-name">Trekking Agencies Association of Nepal</span>
+          </div>
+          <div className="logo-item">
+            <img src={gvernLogo} alt="Ministry of Culture Tourism and Civil Aviation" />
+            <span className="logo-name">Ministry of Culture Tourism and Civil Aviation</span>
+          </div>
+          <div className="logo-item">
+            <img src={nmaLogo} alt="Nepal Mountaineering Association" />
+            <span className="logo-name">Nepal Mountaineering Association</span>
+          </div>
+        </div>
       </div>
     </div>
   );
